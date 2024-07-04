@@ -8,50 +8,58 @@
 import SwiftUI
 
 struct KanbanItemView: View {
+    @State var rootKanbanItem: KanbanItem
+    
     var body: some View {
         Rectangle()
-            .fill(.gray)
             .padding()
-            .frame(height: 250)
+            .frame(height: 200)
             .overlay(
                 Rectangle()
-                    .fill(.mint)
+                    .fill(.teal)
                     .overlay(
-                        UnderlyingKanbanItemView()
-                            .padding()
+                        HStack(alignment: .center) {
+                            Spacer()
+                            UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
+                            Button {
+                                withAnimation {
+                                    handleButtonClick()
+                                }
+                            } label: {
+                                /// Can we make this a delete button? What does that look like
+                                Image(systemName: "gear")
+                            }.padding(.trailing)
+                        }
                     )
             )
-        }
+    }
+    
+    // This doens't mutate teh original
+    private func handleButtonClick() {
+        rootKanbanItem.mutate()
+    }
 }
 
 struct UnderlyingKanbanItemView: View {
-    @State var rootKanbanItem = KanbanItem()
-
+    @State var rootKanbanItem: KanbanItem
+    
     var body: some View {
         VStack {
             HStack {
                 Text(rootKanbanItem.title)
-                    .font(.largeTitle.bold())
+                    .font(.title.bold())
                 Spacer()
-                Button("X") {
-                    withAnimation {
-                        handleButtonClick()
-                    }
-                }
             }
             .padding([.bottom, .trailing, .leading])
             
             Text(rootKanbanItem.description)
                 .font(.footnote)
         }
-        .background()
-    }
-    
-    private func handleButtonClick() {
-        rootKanbanItem.mutate()
+        .padding()
+        .background(.gray.opacity(0.8))
     }
 }
 
 #Preview {
-    KanbanItemView()
+    KanbanItemView(rootKanbanItem: KanbanItem.random(withId: 0))
 }

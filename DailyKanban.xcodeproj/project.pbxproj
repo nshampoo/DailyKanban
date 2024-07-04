@@ -16,6 +16,8 @@
 		19D2AE2A2C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */; };
 		19D2AE372C37080200C91C4B /* KanbanItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE362C37080200C91C4B /* KanbanItemView.swift */; };
 		19D2AE3A2C37197500C91C4B /* KanbanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE392C37197500C91C4B /* KanbanItem.swift */; };
+		19D2AE3D2C373AA700C91C4B /* KanbanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */; };
+		19D2AE3F2C373ADD00C91C4B /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		19D2AE362C37080200C91C4B /* KanbanItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanItemView.swift; sourceTree = "<group>"; };
 		19D2AE392C37197500C91C4B /* KanbanItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanItem.swift; sourceTree = "<group>"; };
+		19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoard.swift; sourceTree = "<group>"; };
+		19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				19D2AE0C2C3706FD00C91C4B /* DailyKanbanApp.swift */,
-				19D2AE3B2C3719C000C91C4B /* Views */,
 				19D2AE382C37192500C91C4B /* Models */,
+				19D2AE402C37439B00C91C4B /* ViewModels */,
+				19D2AE3B2C3719C000C91C4B /* Views */,
 				19D2AE102C3706FE00C91C4B /* Assets.xcassets */,
 				19D2AE122C3706FE00C91C4B /* Preview Content */,
 			);
@@ -136,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				19D2AE392C37197500C91C4B /* KanbanItem.swift */,
+				19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */,
+				19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +154,13 @@
 				19D2AE362C37080200C91C4B /* KanbanItemView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		19D2AE402C37439B00C91C4B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +295,9 @@
 			files = (
 				19D2AE0F2C3706FD00C91C4B /* ContentView.swift in Sources */,
 				19D2AE3A2C37197500C91C4B /* KanbanItem.swift in Sources */,
+				19D2AE3D2C373AA700C91C4B /* KanbanBoard.swift in Sources */,
 				19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */,
+				19D2AE3F2C373ADD00C91C4B /* KanbanColumn.swift in Sources */,
 				19D2AE372C37080200C91C4B /* KanbanItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
