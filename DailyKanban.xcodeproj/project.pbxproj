@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE0C2C3706FD00C91C4B /* DailyKanbanApp.swift */; };
+		19D2AE0F2C3706FD00C91C4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE0E2C3706FD00C91C4B /* ContentView.swift */; };
+		19D2AE112C3706FE00C91C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D2AE102C3706FE00C91C4B /* Assets.xcassets */; };
+		19D2AE142C3706FE00C91C4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D2AE132C3706FE00C91C4B /* Preview Assets.xcassets */; };
+		19D2AE1E2C3706FF00C91C4B /* DailyKanbanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE1D2C3706FF00C91C4B /* DailyKanbanTests.swift */; };
+		19D2AE282C3706FF00C91C4B /* DailyKanbanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */; };
+		19D2AE2A2C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		19D2AE1A2C3706FF00C91C4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19D2AE012C3706FC00C91C4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19D2AE082C3706FC00C91C4B;
+			remoteInfo = DailyKanban;
+		};
+		19D2AE242C3706FF00C91C4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19D2AE012C3706FC00C91C4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19D2AE082C3706FC00C91C4B;
+			remoteInfo = DailyKanban;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19D2AE092C3706FD00C91C4B /* DailyKanban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyKanban.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19D2AE0C2C3706FD00C91C4B /* DailyKanbanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanApp.swift; sourceTree = "<group>"; };
+		19D2AE0E2C3706FD00C91C4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		19D2AE102C3706FE00C91C4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		19D2AE132C3706FE00C91C4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		19D2AE192C3706FF00C91C4B /* DailyKanbanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyKanbanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19D2AE1D2C3706FF00C91C4B /* DailyKanbanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanTests.swift; sourceTree = "<group>"; };
+		19D2AE232C3706FF00C91C4B /* DailyKanbanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyKanbanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITests.swift; sourceTree = "<group>"; };
+		19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		19D2AE062C3706FC00C91C4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE162C3706FF00C91C4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE202C3706FF00C91C4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19D2AE002C3706FC00C91C4B = {
+			isa = PBXGroup;
+			children = (
+				19D2AE0B2C3706FD00C91C4B /* DailyKanban */,
+				19D2AE1C2C3706FF00C91C4B /* DailyKanbanTests */,
+				19D2AE262C3706FF00C91C4B /* DailyKanbanUITests */,
+				19D2AE0A2C3706FD00C91C4B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		19D2AE0A2C3706FD00C91C4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19D2AE092C3706FD00C91C4B /* DailyKanban.app */,
+				19D2AE192C3706FF00C91C4B /* DailyKanbanTests.xctest */,
+				19D2AE232C3706FF00C91C4B /* DailyKanbanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19D2AE0B2C3706FD00C91C4B /* DailyKanban */ = {
+			isa = PBXGroup;
+			children = (
+				19D2AE0C2C3706FD00C91C4B /* DailyKanbanApp.swift */,
+				19D2AE0E2C3706FD00C91C4B /* ContentView.swift */,
+				19D2AE102C3706FE00C91C4B /* Assets.xcassets */,
+				19D2AE122C3706FE00C91C4B /* Preview Content */,
+			);
+			path = DailyKanban;
+			sourceTree = "<group>";
+		};
+		19D2AE122C3706FE00C91C4B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				19D2AE132C3706FE00C91C4B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		19D2AE1C2C3706FF00C91C4B /* DailyKanbanTests */ = {
+			isa = PBXGroup;
+			children = (
+				19D2AE1D2C3706FF00C91C4B /* DailyKanbanTests.swift */,
+			);
+			path = DailyKanbanTests;
+			sourceTree = "<group>";
+		};
+		19D2AE262C3706FF00C91C4B /* DailyKanbanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */,
+				19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */,
+			);
+			path = DailyKanbanUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		19D2AE082C3706FC00C91C4B /* DailyKanban */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19D2AE2D2C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanban" */;
+			buildPhases = (
+				19D2AE052C3706FC00C91C4B /* Sources */,
+				19D2AE062C3706FC00C91C4B /* Frameworks */,
+				19D2AE072C3706FC00C91C4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DailyKanban;
+			productName = DailyKanban;
+			productReference = 19D2AE092C3706FD00C91C4B /* DailyKanban.app */;
+			productType = "com.apple.product-type.application";
+		};
+		19D2AE182C3706FF00C91C4B /* DailyKanbanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19D2AE302C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanbanTests" */;
+			buildPhases = (
+				19D2AE152C3706FF00C91C4B /* Sources */,
+				19D2AE162C3706FF00C91C4B /* Frameworks */,
+				19D2AE172C3706FF00C91C4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				19D2AE1B2C3706FF00C91C4B /* PBXTargetDependency */,
+			);
+			name = DailyKanbanTests;
+			productName = DailyKanbanTests;
+			productReference = 19D2AE192C3706FF00C91C4B /* DailyKanbanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		19D2AE222C3706FF00C91C4B /* DailyKanbanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19D2AE332C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanbanUITests" */;
+			buildPhases = (
+				19D2AE1F2C3706FF00C91C4B /* Sources */,
+				19D2AE202C3706FF00C91C4B /* Frameworks */,
+				19D2AE212C3706FF00C91C4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				19D2AE252C3706FF00C91C4B /* PBXTargetDependency */,
+			);
+			name = DailyKanbanUITests;
+			productName = DailyKanbanUITests;
+			productReference = 19D2AE232C3706FF00C91C4B /* DailyKanbanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		19D2AE012C3706FC00C91C4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					19D2AE082C3706FC00C91C4B = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					19D2AE182C3706FF00C91C4B = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 19D2AE082C3706FC00C91C4B;
+					};
+					19D2AE222C3706FF00C91C4B = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 19D2AE082C3706FC00C91C4B;
+					};
+				};
+			};
+			buildConfigurationList = 19D2AE042C3706FC00C91C4B /* Build configuration list for PBXProject "DailyKanban" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 19D2AE002C3706FC00C91C4B;
+			productRefGroup = 19D2AE0A2C3706FD00C91C4B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				19D2AE082C3706FC00C91C4B /* DailyKanban */,
+				19D2AE182C3706FF00C91C4B /* DailyKanbanTests */,
+				19D2AE222C3706FF00C91C4B /* DailyKanbanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		19D2AE072C3706FC00C91C4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19D2AE142C3706FE00C91C4B /* Preview Assets.xcassets in Resources */,
+				19D2AE112C3706FE00C91C4B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE172C3706FF00C91C4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE212C3706FF00C91C4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19D2AE052C3706FC00C91C4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19D2AE0F2C3706FD00C91C4B /* ContentView.swift in Sources */,
+				19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE152C3706FF00C91C4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19D2AE1E2C3706FF00C91C4B /* DailyKanbanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19D2AE1F2C3706FF00C91C4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19D2AE282C3706FF00C91C4B /* DailyKanbanUITests.swift in Sources */,
+				19D2AE2A2C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		19D2AE1B2C3706FF00C91C4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 19D2AE082C3706FC00C91C4B /* DailyKanban */;
+			targetProxy = 19D2AE1A2C3706FF00C91C4B /* PBXContainerItemProxy */;
+		};
+		19D2AE252C3706FF00C91C4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 19D2AE082C3706FC00C91C4B /* DailyKanban */;
+			targetProxy = 19D2AE242C3706FF00C91C4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		19D2AE2B2C3706FF00C91C4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		19D2AE2C2C3706FF00C91C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		19D2AE2E2C3706FF00C91C4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DailyKanban/Preview Content\"";
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanban;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		19D2AE2F2C3706FF00C91C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DailyKanban/Preview Content\"";
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanban;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		19D2AE312C3706FF00C91C4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanbanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyKanban.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DailyKanban";
+			};
+			name = Debug;
+		};
+		19D2AE322C3706FF00C91C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanbanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyKanban.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DailyKanban";
+			};
+			name = Release;
+		};
+		19D2AE342C3706FF00C91C4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanbanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DailyKanban;
+			};
+			name = Debug;
+		};
+		19D2AE352C3706FF00C91C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84LP9M3UUC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanbanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DailyKanban;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19D2AE042C3706FC00C91C4B /* Build configuration list for PBXProject "DailyKanban" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19D2AE2B2C3706FF00C91C4B /* Debug */,
+				19D2AE2C2C3706FF00C91C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19D2AE2D2C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanban" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19D2AE2E2C3706FF00C91C4B /* Debug */,
+				19D2AE2F2C3706FF00C91C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19D2AE302C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanbanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19D2AE312C3706FF00C91C4B /* Debug */,
+				19D2AE322C3706FF00C91C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19D2AE332C3706FF00C91C4B /* Build configuration list for PBXNativeTarget "DailyKanbanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19D2AE342C3706FF00C91C4B /* Debug */,
+				19D2AE352C3706FF00C91C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 19D2AE012C3706FC00C91C4B /* Project object */;
+}
