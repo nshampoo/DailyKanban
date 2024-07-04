@@ -14,6 +14,7 @@
 		19D2AE1E2C3706FF00C91C4B /* DailyKanbanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE1D2C3706FF00C91C4B /* DailyKanbanTests.swift */; };
 		19D2AE282C3706FF00C91C4B /* DailyKanbanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */; };
 		19D2AE2A2C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */; };
+		19D2AE372C37080200C91C4B /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE362C37080200C91C4B /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		19D2AE232C3706FF00C91C4B /* DailyKanbanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyKanbanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITests.swift; sourceTree = "<group>"; };
 		19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		19D2AE362C37080200C91C4B /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				19D2AE0E2C3706FD00C91C4B /* ContentView.swift */,
 				19D2AE102C3706FE00C91C4B /* Assets.xcassets */,
 				19D2AE122C3706FE00C91C4B /* Preview Content */,
+				19D2AE362C37080200C91C4B /* SwiftUIView.swift */,
 			);
 			path = DailyKanban;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				19D2AE0F2C3706FD00C91C4B /* ContentView.swift in Sources */,
 				19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */,
+				19D2AE372C37080200C91C4B /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DailyKanban/Preview Content\"";
@@ -437,6 +442,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanban;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,6 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DailyKanban/Preview Content\"";
@@ -466,6 +473,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = NicholasShampoe.DailyKanban;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -9,13 +9,48 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                ScrollView {
+                    KanbanItemView()
+                        .padding()
+                    KanbanItemView()
+                        .padding()
+                    KanbanItemView()
+                        .padding()
+                    KanbanItemView()
+                        .padding()
+                    KanbanItemView()
+                        .padding()
+                    KanbanItemView()
+                        .padding()
+                }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .principal) {
+                    Text("To Do")
+                }
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Button("To Do") {
+                        print("Pressed")
+                    }
+                    
+                    Button("Waiting") {
+                        print("Pressed")
+                    }
+                    Button("Today") {
+                        print("Pressed")
+                    }
+                    Button("In Progress") {
+                        print("Pressed")
+                    }
+                    Button("Done") {
+                        print("Pressed")
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
     }
 }
 
