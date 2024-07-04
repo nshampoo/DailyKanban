@@ -34,7 +34,6 @@ struct ContentView: View {
                     Button("To Do") {
                         print("Pressed")
                     }
-                    
                     Button("Waiting") {
                         print("Pressed")
                     }
