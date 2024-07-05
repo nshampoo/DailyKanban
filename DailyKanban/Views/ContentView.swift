@@ -25,7 +25,7 @@ struct ContentView: View {
         .dropDestination(for: KanbanItem.self) { _, _ in
             return false
         } isTargeted: { trashCanSelected = $0 }
-        .background(.gray.opacity(0.1))
+        .background(.gray.opacity(0.2))
     }
     
     
@@ -58,21 +58,32 @@ struct ContentView: View {
         ScrollView(.vertical) {
             ForEach(column.items.values.sorted(), id: \.title) { item in
                 KanbanItemView(rootKanbanItem: item)
-                    .padding()
+                    .padding(.vertical, 5)
+                    .padding(.horizontal)
                     .draggable(item)
             }
-            .padding(15)
         }
         .scrollIndicators(.hidden)
     }
     
     @ViewBuilder
     func topTabBar() -> some View {
-        Text("Daily Kanban")
-            .font(.largeTitle.bold())
-            .padding([.vertical], 10)
-            .padding([.horizontal], 35)
-            .background(.gray.opacity(0.2), in: .capsule)
+        HStack {
+            Text("Daily Kanban")
+                .font(.largeTitle.bold())
+                .padding([.vertical], 10)
+                .padding([.horizontal], 35)
+                .background(.gray.opacity(0.2), in: .capsule)
+                .frame(alignment: .center)
+            Button {
+                withAnimation {
+//                    handleButtonClick()
+                }
+            } label: {
+                Image(systemName: "gear")
+                    .tint(.black)
+            }.padding(.trailing)
+        }
     }
     
     @ViewBuilder

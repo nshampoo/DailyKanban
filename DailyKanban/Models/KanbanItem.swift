@@ -45,7 +45,7 @@ final class KanbanItem: ObservableObject {
     static func random(withId id: Int) -> KanbanItem {
         let descriptions: [String] = [description, "Hi peoples!"]
         
-        let description = Int.random(in: 0 ... 10) > 2 ? descriptions.randomElement() : nil
+        let description = Int.random(in: 0 ... 10) > 10 ? descriptions.randomElement() : nil
         let item = KanbanItem(id: id, title: KanbanItem.possibleTites.randomElement() ?? "Failed to get random?", description: description)
         
         return item

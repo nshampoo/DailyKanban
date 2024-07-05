@@ -24,8 +24,6 @@ class KanbanColumn: ObservableObject {
     
     func addItem(_ item: KanbanItem) {
         items[item.id] = item
-        
-        print("test")
     }
     
     @discardableResult

@@ -13,7 +13,7 @@ struct KanbanItemView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
             .fill(rootKanbanItem.color.gradient)
-            .frame(height: 150)
+            .frame(height: 50)
             .overlay(
                 HStack(alignment: .center) {
                     UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
@@ -46,7 +46,7 @@ struct UnderlyingKanbanItemView: View {
                     .font(.title.bold())
                 Spacer()
             }
-            .padding([.bottom, .trailing, .leading])
+//            .padding([.bottom, .trailing, .leading])
             
             if let description = rootKanbanItem.description {
                 Text(description)
