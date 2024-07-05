@@ -17,12 +17,12 @@ final class KanbanItem: ObservableObject {
 
     let title: String
     
-    let description: String
+    let description: String?
     
     let color: Color
     
     /// This is only for testing
-    static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to Girlfriend", "Read a Book", "Lay on the Floor"]
+    static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to friends", "Read a Book", "Lay on the Floor"]
     
     static let description: String =
     """
@@ -34,15 +34,18 @@ final class KanbanItem: ObservableObject {
     /// The time in hours beetween this item coming back
     let retention: Double?
     
-    public init(id: Int, title: String, description: String, retention: Double? = nil) {
+    public init(id: Int, title: String, description: String?, retention: Double? = nil) {
         self.id = id
         self.title = title
         self.description = description
         self.retention = retention
-        self.color = [Color.purple, .green, .red, .blue].randomElement() ?? .white
+        self.color = [Color.purple, .green, .red, .blue, .yellow, .brown, .cyan, .mint].randomElement() ?? .white
     }
 
     static func random(withId id: Int) -> KanbanItem {
+        let descriptions: [String] = [description, "Hi peoples!"]
+        
+        let description = Int.random(in: 0 ... 10) > 2 ? descriptions.randomElement() : nil
         let item = KanbanItem(id: id, title: KanbanItem.possibleTites.randomElement() ?? "Failed to get random?", description: description)
         
         return item
@@ -71,7 +74,7 @@ extension KanbanItem: Codable {
         var container = try decoder.unkeyedContainer()
         let id = try container.decode(Int.self)
         let title = try container.decode(String.self)
-        let description  = try container.decode(String.self)
+        let description  = try container.decodeIfPresent(String.self)
         let retention = try container.decodeIfPresent(Double.self)
         
         self.init(id: id, title: title, description: description, retention: retention)

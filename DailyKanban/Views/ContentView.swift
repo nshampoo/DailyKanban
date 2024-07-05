@@ -70,8 +70,9 @@ struct ContentView: View {
     func topTabBar() -> some View {
         Text("Daily Kanban")
             .font(.largeTitle.bold())
-            .padding(5)
-            .background(.gray.opacity(0.3), in: .capsule)
+            .padding([.vertical], 10)
+            .padding([.horizontal], 35)
+            .background(.gray.opacity(0.2), in: .capsule)
     }
     
     @ViewBuilder

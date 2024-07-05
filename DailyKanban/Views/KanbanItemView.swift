@@ -48,8 +48,10 @@ struct UnderlyingKanbanItemView: View {
             }
             .padding([.bottom, .trailing, .leading])
             
-            Text(rootKanbanItem.description)
-                .font(.footnote)
+            if let description = rootKanbanItem.description {
+                Text(description)
+                    .font(.footnote)
+            }
         }
         .padding()
 //        .background(.gray.opacity(0.2))
