@@ -48,7 +48,7 @@ struct ContentView: View {
                     .padding(.vertical, 10)
                     .contentShape(.capsule)
                     .onTapGesture {
-                        withAnimation(.snappy) {
+                        withAnimation(.spring) {
                             board.currentlySelectedColumnId = column.id
                         }
                     }
