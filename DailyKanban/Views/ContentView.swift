@@ -17,7 +17,12 @@ struct ContentView: View {
             Scroller()
             CustomTabBar()
         }
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        /// If we are dragging at all, consider it so
+        .dropDestination(for: KanbanItem.self) { _, _ in
+            return false
+        } isTargeted: { trashCanSelected = $0 }
         .background(.gray.opacity(0.1))
     }
         
@@ -92,12 +97,11 @@ struct ContentView: View {
                     .padding(10)
                     .background(.gray.opacity(trashCanSelected ? 1.0 : 0.0), in: .capsule)
             )
-
             .dropDestination(for: KanbanItem.self) { items, _ in
                 guard let item = items.first else { return false }
                 board.removeItem(withItemId: item.id)
                 return true
-            } isTargeted: { trashCanSelected = $0 }
+            }
             .padding(10)
             .background(.gray.opacity(0.2), in: .capsule)
             .padding(5)
