@@ -50,18 +50,25 @@ class KanbanBoard: ObservableObject {
     }
     
     func moveItem(withItemId itemId: Int, toColumn: Int) {
-        var fromColumnId: Int?
-        for column in columns {
-            if column.value.items.contains(where: { $0.key == itemId }) {
-                fromColumnId = column.key
-                break
-            }
-        }
+        guard let fromColumnId = findColumnForItem(withId: itemId) else { return }
+
         do {
-            try moveItem(withItemId: itemId, fromColumn: fromColumnId ?? 0, toColumn: toColumn)
+            try moveItem(withItemId: itemId, fromColumn: fromColumnId, toColumn: toColumn)
         } catch {
             assertionFailure("This should never happen")
         }
+    }
+    
+    func removeItem(withItemId itemId: Int) {
+        guard let fromColumnId = findColumnForItem(withId: itemId) else { return }
+        
+        do {
+            try columns[fromColumnId]?.removeItem(withId: itemId)
+        } catch {
+            assertionFailure("Failed to remove an item?")
+        }
+        
+        updateItemsIfNeeded(forColumn: fromColumnId)
     }
     
     /// This is a test init, that allows me to have sample data
@@ -82,6 +89,17 @@ class KanbanBoard: ObservableObject {
         } catch {
             assertionFailure("no")
         }
+    }
+    
+    private func findColumnForItem(withId id: Int) -> Int? {
+        var fromColumnId: Int?
+        for column in columns {
+            if column.value.items.contains(where: { $0.key == id }) {
+                fromColumnId = column.key
+                break
+            }
+        }
+        return fromColumnId
     }
 
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
+    @State var trashCanSelected: Bool = false
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
@@ -58,7 +59,6 @@ struct ContentView: View {
                         return true
                     }
                 }
-                
             }/// Bakground to show which one is selected
             .background {
                 GeometryReader {
@@ -83,6 +83,21 @@ struct ContentView: View {
                 Image(systemName: "plus")
                     .tint(.black)
             }
+            /// IDK if I like this, could look better, in a perfect world picking up teh item triggers this, however I can't find an API for "hasStartedDraggin"
+            .overlay(
+                Image(systemName: "trash")
+                    .tint(.red)
+                    .font(.largeTitle)
+                    .opacity(trashCanSelected ? 1.0 : 0.0)
+                    .padding(10)
+                    .background(.gray.opacity(trashCanSelected ? 1.0 : 0.0), in: .capsule)
+            )
+
+            .dropDestination(for: KanbanItem.self) { items, _ in
+                guard let item = items.first else { return false }
+                board.removeItem(withItemId: item.id)
+                return true
+            } isTargeted: { trashCanSelected = $0 }
             .padding(10)
             .background(.gray.opacity(0.2), in: .capsule)
             .padding(5)
