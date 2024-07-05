@@ -68,12 +68,12 @@ struct ContentView: View {
             .background {
                 GeometryReader {
                     let size = $0.size
-                    let capsuleWidth = size.width / CGFloat(board.listedColumns().count)
+                    let capsuleWidth = size.width / CGFloat(board.columns.count)
                     
                     Capsule()
                         .fill(scheme == .dark ? .black : .white)
                         .frame(width: capsuleWidth)
-                        .offset(x: Double(board.currentlySelectedColumnId / board.columns.count) * (size.width - capsuleWidth))
+                        .offset(x: (Double(board.currentlySelectedColumnId) / Double(board.columns.count - 1)) * (size.width - capsuleWidth))
                 }
             }
             .background(.gray.opacity(0.2), in: .capsule)
