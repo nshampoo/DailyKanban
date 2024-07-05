@@ -7,26 +7,29 @@
 
 import Foundation
 
-struct KanbanColumn {
+class KanbanColumn: ObservableObject {
     let id: Int
     /// I'm imagining we can save items that are in retention periods into some "hidden" column. Perhaps this is visible or not, but doesn't matter for now
     var isVisible: Bool = true
     
     var name: String
-    var items: [Int:KanbanItem] = [:]
+    @Published var items: [Int:KanbanItem] = [:]
 
-    func listedItems() -> [KanbanItem] {
-        items.values.sorted()
+    public init(id: Int, isVisible: Bool, name: String, items: [Int : KanbanItem]) {
+        self.id = id
+        self.isVisible = isVisible
+        self.name = name
+        self.items = items
     }
     
-    mutating func addItem(_ item: KanbanItem) {
+    func addItem(_ item: KanbanItem) {
         items[item.id] = item
         
         print("test")
     }
     
     @discardableResult
-    mutating func removeItem(withId id: Int) throws -> KanbanItem {
+    func removeItem(withId id: Int) throws -> KanbanItem {
         guard let item = items.removeValue(forKey: id) else { throw KanbanErrors.invalidParameters }
         
         return item

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
+import SwiftUI
 
 /// This represents the core model of what a TODO item is...
 
@@ -40,10 +42,6 @@ struct KanbanItem {
     }
 }
 
-extension KanbanItem: Identifiable {
-    
-}
-
 /// Extremely simple comparability, should not be used longterm
 extension KanbanItem: Comparable {
     static func < (lhs: KanbanItem, rhs: KanbanItem) -> Bool {
@@ -52,5 +50,11 @@ extension KanbanItem: Comparable {
     
     static func == (lhs: KanbanItem, rhs: KanbanItem) -> Bool {
         lhs.id == rhs.id
+    }
+}
+
+extension KanbanItem: Transferable, Codable, Identifiable {
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(for: KanbanItem.self, contentType: .content)
     }
 }

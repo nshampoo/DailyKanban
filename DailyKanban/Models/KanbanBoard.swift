@@ -15,10 +15,16 @@ import Foundation
 ///
 ///
 /// In theory this whole model is decodable, so we can save it in some json, to be accessed
-struct KanbanBoard {
+class KanbanBoard: ObservableObject {
     var globalItemIdCounter: Int = 0
-    var columns: [Int:KanbanColumn] = [:]
-    var currentlySelectedColumnId = 2
+    @Published var columns: [Int:KanbanColumn] = [:]
+    @Published var currentlySelectedColumn: KanbanColumn
+    
+    var currentlySelectedColumnId = 2 {
+        didSet {
+            currentlySelectedColumn = columns[currentlySelectedColumnId] ?? .todayColumn
+        }
+    }
     
     /// API to allow UI to get a list of items for a certain column
     func items(forColumnWithId id: Int? = nil) throws -> [Int: KanbanItem] {
@@ -28,32 +34,44 @@ struct KanbanBoard {
         return column.items
     }
 
-    mutating func addItem(_ item: KanbanItem, toColumn: Int) {
+    func addItem(_ item: KanbanItem, toColumn: Int) {
         columns[toColumn]?.addItem(item)
         
         print("asdf")
     }
     
-    mutating func moveItem(withItemId itemId: Int, fromColumn: Int, toColumn: Int) throws {
-        guard var fromColumn = columns[fromColumn] else { throw KanbanErrors.invalidParameters }
-        
-        let item = try fromColumn.removeItem(withId: itemId)
+    func moveItem(withItemId itemId: Int, fromColumn: Int, toColumn: Int) throws {
+        guard let item = try columns[fromColumn]?.removeItem(withId: itemId) else { throw KanbanErrors.invalidParameters }
         
         addItem(item, toColumn: toColumn)
+    }
+    
+    func moveItem(withItemId itemId: Int, toColumn: Int) {
+        var fromColumnId: Int?
+        for column in columns {
+            if column.value.items.contains(where: { $0.key == itemId }) {
+                fromColumnId = column.key
+                break
+            }
+        }
+        
+        do {
+            try moveItem(withItemId: itemId, fromColumn: fromColumnId ?? 0, toColumn: toColumn)
+        } catch {
+            assertionFailure("This should never happen")
+        }
     }
     
     /// This is a test init, that allows me to have sample data
     init(columns: [Int : KanbanColumn]) {
         self.columns = columns
+        self.currentlySelectedColumn = .todayColumn
     }
 
     func listedColumns() -> [KanbanColumn] {
         columns.values.sorted()
     }
-    
-    func currentlySelectedColumn() -> KanbanColumn {
-        columns[currentlySelectedColumnId] ?? .doneColumn
-    }
+
 }
 
 enum KanbanErrors: Error {

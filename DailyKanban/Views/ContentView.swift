@@ -8,23 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
+    @ObservedObject var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
+    @ObservedObject var currentColumn = KanbanColumn.todayColumn
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
         VStack(spacing: 15) {
-            ScrollView {
-                ForEach(board.currentlySelectedColumn().listedItems(), id: \.title) { item in
-                    KanbanItemView(rootKanbanItem: item)
-                        .padding()
-                }
-            }
+            Scroller()
             CustomTabBar()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.gray.opacity(0.1))
     }
-    
+        
+    @ViewBuilder
+    func Scroller() -> some View {
+        ScrollView {
+            Text("Daily Kanban")
+                .font(.largeTitle.bold())
+                .padding(5)
+                .background(.gray.opacity(0.3), in: .capsule)
+            ForEach(board.currentlySelectedColumn.items.values.sorted(), id: \.title) { item in
+                KanbanItemView(rootKanbanItem: item)
+                    .padding()
+                    .draggable(item)
+            }
+        }
+    }
+
     @ViewBuilder
     func CustomTabBar() -> some View {
         HStack(spacing: 0) {
@@ -42,7 +53,13 @@ struct ContentView: View {
                             board.currentlySelectedColumnId = column.id
                         }
                     }
+                    .dropDestination(for: KanbanItem.self) { items, _ in
+                        guard let item = items.first else { return false }
+                        board.moveItem(withItemId: item.id, toColumn: column.id)
+                        return true
+                    }
                 }
+                
             }/// Bakground to show which one is selected
             .background {
                 GeometryReader {
