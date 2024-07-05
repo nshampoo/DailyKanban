@@ -19,6 +19,8 @@ final class KanbanItem: ObservableObject {
     
     let description: String
     
+    let color: Color
+    
     /// This is only for testing
     static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to Girlfriend", "Read a Book", "Lay on the Floor"]
     
@@ -37,6 +39,7 @@ final class KanbanItem: ObservableObject {
         self.title = title
         self.description = description
         self.retention = retention
+        self.color = [Color.purple, .green, .red, .blue].randomElement() ?? .white
     }
 
     static func random(withId id: Int) -> KanbanItem {

@@ -11,26 +11,22 @@ struct KanbanItemView: View {
     @State var rootKanbanItem: KanbanItem
     
     var body: some View {
-        Rectangle()
-            .padding()
-            .frame(height: 200)
+        RoundedRectangle(cornerRadius: 15)
+            .fill(rootKanbanItem.color.gradient)
+            .frame(height: 150)
             .overlay(
-                Rectangle()
-                    .fill(.teal)
-                    .overlay(
-                        HStack(alignment: .center) {
-                            Spacer()
-                            UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
-                            Button {
-                                withAnimation {
-                                    handleButtonClick()
-                                }
-                            } label: {
-                                /// Can we make this a delete button? What does that look like
-                                Image(systemName: "gear")
-                            }.padding(.trailing)
+                HStack(alignment: .center) {
+                    UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
+                    Button {
+                        withAnimation {
+                            handleButtonClick()
                         }
-                    )
+                    } label: {
+                        /// Can we make this a delete button? What does that look like
+                        Image(systemName: "gear")
+                            .tint(.black)
+                    }.padding(.trailing)
+                }
             )
     }
     
@@ -56,7 +52,7 @@ struct UnderlyingKanbanItemView: View {
                 .font(.footnote)
         }
         .padding()
-        .background(.gray.opacity(0.8))
+//        .background(.gray.opacity(0.2))
     }
 }
 

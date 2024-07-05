@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
+    @State var selectedTab: Int = 2
     @State var trashCanSelected: Bool = false
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
         VStack(spacing: 15) {
-            Scroller()
-            CustomTabBar()
+            topTabBar()
+            underlyingScoller()
+            customTabBar()
         }
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -25,24 +27,44 @@ struct ContentView: View {
         } isTargeted: { trashCanSelected = $0 }
         .background(.gray.opacity(0.1))
     }
-        
+    
+    
     @ViewBuilder
-    func Scroller() -> some View {
-        ScrollView {
-            Text("Daily Kanban")
-                .font(.largeTitle.bold())
-                .padding(5)
-                .background(.gray.opacity(0.3), in: .capsule)
+    func videoScroller() -> some View {
+        ScrollView(.horizontal) {
+            LazyHStack(spacing: 0) {
+                
+            }
+        }
+//        .scrollPosition(id: selectedTab)
+//        .scrollPosition
+        .scrollIndicators(.hidden)
+        .scrollTargetBehavior(.paging)
+    }
+    
+    @ViewBuilder
+    func underlyingScoller() -> some View {
+        ScrollView(.vertical) {
             ForEach(board.currentlySelectedItems, id: \.title) { item in
                 KanbanItemView(rootKanbanItem: item)
                     .padding()
                     .draggable(item)
             }
+            .padding(15)
         }
+        .scrollIndicators(.hidden)
     }
-
+    
     @ViewBuilder
-    func CustomTabBar() -> some View {
+    func topTabBar() -> some View {
+        Text("Daily Kanban")
+            .font(.largeTitle.bold())
+            .padding(5)
+            .background(.gray.opacity(0.3), in: .capsule)
+    }
+    
+    @ViewBuilder
+    func customTabBar() -> some View {
         HStack(spacing: 0) {
             HStack(spacing: 0) {
                 ForEach(board.listedColumns(), id: \.name) { column in
@@ -56,6 +78,7 @@ struct ContentView: View {
                     .onTapGesture {
                         withAnimation(.spring) {
                             board.currentlySelectedColumnId = column.id
+                            selectedTab = column.id
                         }
                     }
                     .dropDestination(for: KanbanItem.self) { items, _ in
@@ -73,7 +96,7 @@ struct ContentView: View {
                     Capsule()
                         .fill(scheme == .dark ? .black : .white)
                         .frame(width: capsuleWidth)
-                        .offset(x: (Double(board.currentlySelectedColumnId) / Double(board.columns.count - 1)) * (size.width - capsuleWidth))
+                        .offset(x: (Double(selectedTab) / Double(board.columns.count - 1)) * (size.width - capsuleWidth))
                 }
             }
             .background(.gray.opacity(0.2), in: .capsule)
