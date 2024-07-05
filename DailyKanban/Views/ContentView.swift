@@ -14,9 +14,9 @@ struct ContentView: View {
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
-        VStack(spacing: 15) {
+        VStack(spacing: 10) {
             topTabBar()
-            underlyingScoller()
+            primaryScroller()
             customTabBar()
         }
         
@@ -30,22 +30,33 @@ struct ContentView: View {
     
     
     @ViewBuilder
-    func videoScroller() -> some View {
+    func primaryScroller() -> some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 0) {
-                
+                ForEach(board.listedColumns(), id: \.id) { column in
+                    underlyingScroller(column: column)
+                        .containerRelativeFrame(.horizontal)
+                        .scrollTransition { content, phase in
+                            content
+                                .scaleEffect(phase.isIdentity ? 1 : 0.3)
+                        }
+                }
             }
+            .scrollTargetLayout()
         }
-//        .scrollPosition(id: selectedTab)
-//        .scrollPosition
+        .scrollPosition(id: Binding($selectedTab))
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
+        .scrollClipDisabled()
+        .onChange(of: selectedTab) { _, newValue in
+            board.currentlySelectedColumnId = newValue
+        }
     }
-    
+
     @ViewBuilder
-    func underlyingScoller() -> some View {
+    func underlyingScroller(column: KanbanColumn) -> some View {
         ScrollView(.vertical) {
-            ForEach(board.currentlySelectedItems, id: \.title) { item in
+            ForEach(column.items.values.sorted(), id: \.title) { item in
                 KanbanItemView(rootKanbanItem: item)
                     .padding()
                     .draggable(item)
