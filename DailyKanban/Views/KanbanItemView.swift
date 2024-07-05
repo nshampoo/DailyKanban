@@ -36,7 +36,7 @@ struct KanbanItemView: View {
     
     // This doens't mutate teh original
     private func handleButtonClick() {
-        rootKanbanItem.mutate()
+        // no-op
     }
 }
 

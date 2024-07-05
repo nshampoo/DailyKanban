@@ -19,10 +19,12 @@ class KanbanBoard: ObservableObject {
     var globalItemIdCounter: Int = 0
     @Published var columns: [Int:KanbanColumn] = [:]
     @Published var currentlySelectedColumn: KanbanColumn
+    @Published var currentlySelectedItems: [KanbanItem]
     
     var currentlySelectedColumnId = 2 {
         didSet {
             currentlySelectedColumn = columns[currentlySelectedColumnId] ?? .todayColumn
+            currentlySelectedItems = currentlySelectedColumn.items.values.sorted()
         }
     }
     
@@ -37,11 +39,12 @@ class KanbanBoard: ObservableObject {
     func addItem(_ item: KanbanItem, toColumn: Int) {
         columns[toColumn]?.addItem(item)
         
-        print("asdf")
+        updateItemsIfNeeded(forColumn: toColumn)
     }
     
     func moveItem(withItemId itemId: Int, fromColumn: Int, toColumn: Int) throws {
         guard let item = try columns[fromColumn]?.removeItem(withId: itemId) else { throw KanbanErrors.invalidParameters }
+        updateItemsIfNeeded(forColumn: fromColumn)
         
         addItem(item, toColumn: toColumn)
     }
@@ -54,7 +57,6 @@ class KanbanBoard: ObservableObject {
                 break
             }
         }
-        
         do {
             try moveItem(withItemId: itemId, fromColumn: fromColumnId ?? 0, toColumn: toColumn)
         } catch {
@@ -66,10 +68,20 @@ class KanbanBoard: ObservableObject {
     init(columns: [Int : KanbanColumn]) {
         self.columns = columns
         self.currentlySelectedColumn = .todayColumn
+        currentlySelectedItems = []
     }
 
     func listedColumns() -> [KanbanColumn] {
         columns.values.sorted()
+    }
+    
+    func updateItemsIfNeeded(forColumn: Int) {
+        guard forColumn == currentlySelectedColumnId else { return }
+        do {
+            currentlySelectedItems = try items().values.sorted()
+        } catch {
+            assertionFailure("no")
+        }
     }
 
 }

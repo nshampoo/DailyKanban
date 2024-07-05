@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
-    @ObservedObject var currentColumn = KanbanColumn.todayColumn
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
@@ -28,7 +27,7 @@ struct ContentView: View {
                 .font(.largeTitle.bold())
                 .padding(5)
                 .background(.gray.opacity(0.3), in: .capsule)
-            ForEach(board.currentlySelectedColumn.items.values.sorted(), id: \.title) { item in
+            ForEach(board.currentlySelectedItems, id: \.title) { item in
                 KanbanItemView(rootKanbanItem: item)
                     .padding()
                     .draggable(item)
