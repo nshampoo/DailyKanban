@@ -23,7 +23,7 @@ struct KanbanItemView: View {
                         }
                     } label: {
                         /// Can we make this a delete button? What does that look like
-                        Image(systemName: "gear")
+                        Image(systemName: "pencil")
                             .tint(.black)
                     }.padding(.trailing)
                 }
