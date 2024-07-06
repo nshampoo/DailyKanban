@@ -11,44 +11,35 @@ import SwiftUI
 
 /// This represents the core model of what a TODO item is...
 
-final class KanbanItem: ObservableObject {
-    /// This can be how we iterate over all the items, how we associate different items into different places
-    let id: Int
 
-    let title: String
-    
-    let description: String?
-    
-    let color: Color
-    
-    /// This is only for testing
-    static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to best girlfriend ever", "Read a Book", "Lay on the Floor", "Pick up pizza", "Give smooches", "Bring Solid State to girlfriend", "Go for a long run", "Buy chocolate milk", "Build fort", "Let girlfriend pick movie for movie night", "Shave", "Post to Strava", "Give kudos"]
-    
-    static let description: String =
-    """
-    We need to be able to cite a lot of information here
-    1. This could be subtasks
-    2. Or this could just be other things that need to be done
-    """
-    
-    /// The time in hours beetween this item coming back
-    let retention: Double?
-    
-    public init(id: Int, title: String, description: String?, retention: Double? = nil) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.retention = retention
-        self.color = [Color.purple, .green, .red, .blue, .yellow, .brown, .cyan, .mint].randomElement() ?? .white
+final class KanbanItem: ObservableObject {
+    public struct Todo: Codable {
+        var isComplete: Bool
+        var description: String
     }
 
-    static func random(withId id: Int) -> KanbanItem {
-        let descriptions: [String] = [description, "Hi peoples!"]
-        
-        let description = Int.random(in: 0 ... 10) > 10 ? descriptions.randomElement() : nil
-        let item = KanbanItem(id: id, title: KanbanItem.possibleTites.randomElement() ?? "Failed to get random?", description: description)
-        
-        return item
+    /// This can be how we iterate over all the items, how we associate different items into different places
+    var id: Int
+
+    var title: String
+    
+    var todoItems: [Todo]
+    
+    var description: String?
+    
+    var color: Color
+    
+    /// The time in hours beetween this item coming back
+    /// TODO: Implement retention
+    var retention: Double?
+    
+    public init(id: Int, title: String, todoItems: [Todo], description: String?, color: Color, retention: Double?) {
+        self.id = id
+        self.title = title
+        self.todoItems = todoItems
+        self.description = description
+        self.color = color
+        self.retention = retention
     }
 }
 
@@ -74,15 +65,42 @@ extension KanbanItem: Codable {
         var container = try decoder.unkeyedContainer()
         let id = try container.decode(Int.self)
         let title = try container.decode(String.self)
+        let todoItems = try container.decode([Todo].self)
         let description  = try container.decodeIfPresent(String.self)
+        /// TODO: Make Color Codable
+        ///  let color = try container.decode(Color.self)
         let retention = try container.decodeIfPresent(Double.self)
         
-        self.init(id: id, title: title, description: description, retention: retention)
+        self.init(id: id,
+                  title: title,
+                  todoItems: todoItems,
+                  description: description,
+                  color: StaticProperties.PickableColors.randomColor(),
+                  retention: retention)
     }
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(id)
         try container.encode(title)
+        try container.encode(todoItems)
         try container.encode(description)
+        /// TODO: Make Color Encodable
+        try container.encode(retention)
+    }
+}
+
+extension KanbanItem {
+    convenience init?(checkingForEmptyStrings title: String, description: String, color: Color, todos: [String], maxTodos: Int) {
+        guard !title.isEmpty else { return nil }
+        
+        let description = description.isEmpty ? nil : description
+        
+        var constructedTodos: [Todo] = []
+        for (i, todo) in todos.enumerated() where !todo.isEmpty && i < maxTodos {
+            constructedTodos.append(.init(isComplete: false, description: todo))
+        }
+        
+        self.init(id: 0, title: title, todoItems: constructedTodos, description: description, color: color, retention: nil)
     }
 }

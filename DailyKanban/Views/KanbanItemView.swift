@@ -46,7 +46,6 @@ struct UnderlyingKanbanItemView: View {
                     .font(.title.bold())
                 Spacer()
             }
-//            .padding([.bottom, .trailing, .leading])
             
             if let description = rootKanbanItem.description {
                 Text(description)
@@ -54,10 +53,9 @@ struct UnderlyingKanbanItemView: View {
             }
         }
         .padding()
-//        .background(.gray.opacity(0.2))
     }
 }
 
 #Preview {
-    KanbanItemView(rootKanbanItem: KanbanItem.random(withId: 0))
+    KanbanItemView(rootKanbanItem: StaticProperties.random(withId: 0))
 }

@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var board = KanbanBoard(columns: KanbanColumn.sampleKanbanStart)
+    @ObservedObject var board = KanbanBoard(columns: StaticProperties.sampleKanbanStart)
     @State var selectedTab: Int = 2
     @State var trashCanSelected: Bool = false
+    @State var isCreatingItem: Bool = false
     @Environment(\.colorScheme) private var scheme
     
     var body: some View {
         VStack(spacing: 10) {
             topTabBar()
             primaryScroller()
+                .sheet(isPresented: Binding(projectedValue: $isCreatingItem), onDismiss: {
+                    return
+                }, content: { 
+                    CreateItemNavigationView(escapingKanbanItem: addItem)
+                        .frame(alignment: .bottom)
+                })
             customTabBar()
         }
         
@@ -54,10 +61,11 @@ struct ContentView: View {
         .overlay(alignment: .bottomTrailing) {
             Button {
                 /// TODO AddItem view
-                board.addItem(KanbanItem.random(withId: board.globalItemIdCounter), toColumn: board.currentlySelectedColumnId)
-                board.globalItemIdCounter += 1
+                isCreatingItem = true
+//                board.addItem(StaticProperties.random(withId: board.globalItemIdCounter), toColumn: board.currentlySelectedColumnId)
+//                board.globalItemIdCounter += 1
             } label: {
-                let image = trashCanSelected ? "trash" : "plus"
+                let image = trashCanSelected ? "trash" : "plus.circle"
                 let tint: Color = trashCanSelected ? .red : .black
                 Image(systemName: image)
                     .tint(tint)
@@ -69,7 +77,7 @@ struct ContentView: View {
                 return true
             }
             .padding(10)
-            .background(.gray.opacity(0.2), in: .capsule)
+//            .background(.gray.opacity(0.2), in: .capsule)
             .padding(5)
             .padding(.trailing, 10)
         }
@@ -148,6 +156,12 @@ struct ContentView: View {
             .padding(.horizontal, 15)
         }
         
+    }
+    
+    func addItem(_ item: KanbanItem) {
+        item.id = board.globalItemIdCounter
+        board.addItem(item, toColumn: board.currentlySelectedColumnId)
+        board.globalItemIdCounter += 1
     }
 }
 

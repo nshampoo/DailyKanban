@@ -23,7 +23,7 @@ class KanbanBoard: ObservableObject {
     
     var currentlySelectedColumnId = 2 {
         didSet {
-            currentlySelectedColumn = columns[currentlySelectedColumnId] ?? .todayColumn
+            currentlySelectedColumn = columns[currentlySelectedColumnId] ?? StaticProperties.todayColumn
             currentlySelectedItems = currentlySelectedColumn.items.values.sorted()
         }
     }
@@ -74,7 +74,7 @@ class KanbanBoard: ObservableObject {
     /// This is a test init, that allows me to have sample data
     init(columns: [Int : KanbanColumn]) {
         self.columns = columns
-        self.currentlySelectedColumn = .todayColumn
+        self.currentlySelectedColumn = StaticProperties.todayColumn
         currentlySelectedItems = []
     }
 
