@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var board = KanbanBoard(columns: StaticProperties.sampleKanbanStart)
+    @EnvironmentObject var board: KanbanBoard
     @State var selectedTab: Int = 2 {
         didSet {
             board.currentlySelectedColumnId = selectedTab
@@ -16,6 +16,8 @@ struct ContentView: View {
     }
     @State var trashCanSelected: Bool = false
     @State var isCreatingItem: Bool = false
+    @State var isViewingItem: Bool = false
+    @State var currentlyViewingItem: KanbanItem = StaticProperties.random(withId: 0)
     @Environment(\.colorScheme) private var scheme
     
     /// "Main" function, this handles our primary app view
@@ -23,12 +25,22 @@ struct ContentView: View {
         VStack(spacing: 10) {
             topTabBar()
             primaryScroller()
-                .sheet(isPresented: Binding(projectedValue: $isCreatingItem), content: {
-                    CreateItemNavigationView(escapingKanbanItem: addItem)
-                        .frame(alignment: .bottom)
-                })
             customTabBar()
         }
+        .sheet(isPresented: Binding(projectedValue: $isCreatingItem), content: {
+            CreateItemNavigationView(escapingKanbanItem: addItem)
+                .presentationDetents([.fraction(0.75)])
+                .presentationBackground(.thinMaterial)
+                .presentationDragIndicator(.hidden)
+                .presentationCornerRadius(25)
+        })
+        .sheet(isPresented: Binding(projectedValue: $isViewingItem), content: {
+            ViewItemView(item: currentlyViewingItem)
+                .presentationDetents([.medium, .fraction(0.9)])
+                .presentationBackground(.linearGradient(currentlyViewingItem.color.gradient, startPoint: .top, endPoint: .bottom))
+                .presentationDragIndicator(.hidden)
+                .presentationCornerRadius(25)
+        })
         /// Handle Dragging of items throughout the whole screen
         .dropDestination(for: KanbanItem.self) { _, _ in
             return false
@@ -36,8 +48,7 @@ struct ContentView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.gray.opacity(0.2))
     }
-    
-    
+
     @ViewBuilder
     func primaryScroller() -> some View {
         ScrollView(.horizontal) {
@@ -85,6 +96,10 @@ struct ContentView: View {
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .draggable(item)
+                    .onTapGesture {
+                        currentlyViewingItem = item
+                        isViewingItem.toggle()
+                    }
             }
         }
         .scrollIndicators(.hidden)

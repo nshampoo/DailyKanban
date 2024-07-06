@@ -20,6 +20,7 @@
 		19D2AE3F2C373ADD00C91C4B /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */; };
 		19D2AE442C398A3200C91C4B /* HardcodedStaticProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE432C398A3200C91C4B /* HardcodedStaticProperties.swift */; };
 		19D2AE462C398E7100C91C4B /* CreateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE452C398E7100C91C4B /* CreateItemView.swift */; };
+		19D2AE482C39C24B00C91C4B /* ViewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE472C39C24B00C91C4B /* ViewItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		19D2AE432C398A3200C91C4B /* HardcodedStaticProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedStaticProperties.swift; sourceTree = "<group>"; };
 		19D2AE452C398E7100C91C4B /* CreateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemView.swift; sourceTree = "<group>"; };
+		19D2AE472C39C24B00C91C4B /* ViewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				19D2AE0E2C3706FD00C91C4B /* ContentView.swift */,
-				19D2AE362C37080200C91C4B /* KanbanItemView.swift */,
 				19D2AE452C398E7100C91C4B /* CreateItemView.swift */,
+				19D2AE362C37080200C91C4B /* KanbanItemView.swift */,
+				19D2AE472C39C24B00C91C4B /* ViewItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */,
 				19D2AE462C398E7100C91C4B /* CreateItemView.swift in Sources */,
 				19D2AE3F2C373ADD00C91C4B /* KanbanColumn.swift in Sources */,
+				19D2AE482C39C24B00C91C4B /* ViewItemView.swift in Sources */,
 				19D2AE372C37080200C91C4B /* KanbanItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

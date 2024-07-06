@@ -11,7 +11,7 @@ import SwiftUI
 struct DailyKanbanApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(KanbanBoard(columns: StaticProperties.sampleKanbanStart))
         }
     }
 }

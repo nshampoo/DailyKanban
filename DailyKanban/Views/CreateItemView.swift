@@ -67,7 +67,6 @@ struct CreateItemNavigationView: View {
                 }
                 .padding(.horizontal)
             }
-            .tint(.gray)
             .toolbar {
                 customHeaderToolbar
             }

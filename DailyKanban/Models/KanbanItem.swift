@@ -13,9 +13,14 @@ import SwiftUI
 
 
 final class KanbanItem: ObservableObject {
-    public struct Todo: Codable {
-        var isComplete: Bool
+    final public class Todo: ObservableObject {
+        @Published var isComplete: Bool
         var description: String
+        
+        public init(isComplete: Bool, description: String) {
+            self.isComplete = isComplete
+            self.description = description
+        }
     }
 
     /// This can be how we iterate over all the items, how we associate different items into different places
@@ -102,5 +107,21 @@ extension KanbanItem {
         }
         
         self.init(id: 0, title: title, todoItems: constructedTodos, description: description, color: color, retention: nil)
+    }
+}
+
+extension KanbanItem.Todo: Codable {
+    convenience init(from decoder: any Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        let isComplete = try container.decode(Bool.self)
+        let description = try container.decode(String.self)
+        
+        self.init(isComplete: isComplete, description: description)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(isComplete)
+        try container.encode(description)
     }
 }

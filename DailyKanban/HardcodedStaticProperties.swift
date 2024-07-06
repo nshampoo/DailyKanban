@@ -54,7 +54,7 @@ public struct StaticProperties {
         let description = Int.random(in: 0 ... 10) > 10 ? descriptions.randomElement() : nil
         let item = KanbanItem(id: id,
                               title: StaticProperties.possibleTites.randomElement() ?? "Failed to get random?",
-                              todoItems: [],
+                              todoItems: [.init(isComplete: false, description: "Walk to girlfriend")],
                               description: description,
                               color: PickableColors.randomColor(),
                               retention: nil)
