@@ -51,6 +51,28 @@ struct ContentView: View {
         .onChange(of: selectedTab) { _, newValue in
             board.currentlySelectedColumnId = newValue
         }
+        .overlay(alignment: .bottomTrailing) {
+            Button {
+                /// TODO AddItem view
+                board.addItem(KanbanItem.random(withId: board.globalItemIdCounter), toColumn: board.currentlySelectedColumnId)
+                board.globalItemIdCounter += 1
+            } label: {
+                let image = trashCanSelected ? "trash" : "plus"
+                let tint: Color = trashCanSelected ? .red : .black
+                Image(systemName: image)
+                    .tint(tint)
+                    .font(.largeTitle)
+            }
+            .dropDestination(for: KanbanItem.self) { items, _ in
+                guard let item = items.first else { return false }
+                board.removeItem(withItemId: item.id)
+                return true
+            }
+            .padding(10)
+            .background(.gray.opacity(0.2), in: .capsule)
+            .padding(5)
+            .padding(.trailing, 10)
+        }
     }
 
     @ViewBuilder
@@ -77,7 +99,7 @@ struct ContentView: View {
                 .frame(alignment: .center)
             Button {
                 withAnimation {
-//                    handleButtonClick()
+                    /// TODO: Implement settings
                 }
             } label: {
                 Image(systemName: "gear")
@@ -123,27 +145,7 @@ struct ContentView: View {
                 }
             }
             .background(.gray.opacity(0.2), in: .capsule)
-            .padding(.leading, 15)
-            
-            Button {
-                /// Somehow this isn't adding an item?
-                /// Using breakpoints its adding the item to the correct column as expected
-                board.addItem(KanbanItem.random(withId: board.globalItemIdCounter), toColumn: board.currentlySelectedColumnId)
-                board.globalItemIdCounter += 1
-            } label: {
-                let image = trashCanSelected ? "trash" : "plus"
-                let tint: Color = trashCanSelected ? .red : .black
-                Image(systemName: image)
-                    .tint(tint)
-            }
-            .dropDestination(for: KanbanItem.self) { items, _ in
-                guard let item = items.first else { return false }
-                board.removeItem(withItemId: item.id)
-                return true
-            }
-            .padding(10)
-            .background(.gray.opacity(0.2), in: .capsule)
-            .padding(5)
+            .padding(.horizontal, 15)
         }
         
     }

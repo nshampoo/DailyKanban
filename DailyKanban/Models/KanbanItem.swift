@@ -22,7 +22,7 @@ final class KanbanItem: ObservableObject {
     let color: Color
     
     /// This is only for testing
-    static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to friends", "Read a Book", "Lay on the Floor"]
+    static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to best girlfriend ever", "Read a Book", "Lay on the Floor", "Pick up pizza", "Give smooches", "Bring Solid State to girlfriend", "Go for a long run", "Buy chocolate milk", "Build fort", "Let girlfriend pick movie for movie night", "Shave", "Post to Strava", "Give kudos"]
     
     static let description: String =
     """
