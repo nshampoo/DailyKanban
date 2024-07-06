@@ -22,7 +22,7 @@ struct ContentView: View {
     
     /// "Main" function, this handles our primary app view
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 0) {
             topTabBar()
             primaryScroller()
             customTabBar()
@@ -108,12 +108,18 @@ struct ContentView: View {
     @ViewBuilder
     func topTabBar() -> some View {
         HStack {
+            Image(.dino)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 25))
+                .frame(maxWidth: 50, alignment: .topLeading)
+                .padding(.leading)
             Text("Daily Kanban")
                 .font(.largeTitle.bold())
                 .padding([.vertical], 10)
-                .padding([.horizontal], 35)
-                .background(.gray.opacity(0.2), in: .capsule)
+                .padding([.horizontal])
                 .frame(alignment: .center)
+                .background(.gray.opacity(0.2), in: .capsule)
             Button {
                 withAnimation {
                     /// TODO: Implement settings
@@ -121,7 +127,9 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "gear")
                     .tint(.black)
-            }.padding(.trailing)
+            }
+            .padding(.trailing)
+            .frame(alignment: .topTrailing)
         }
     }
     

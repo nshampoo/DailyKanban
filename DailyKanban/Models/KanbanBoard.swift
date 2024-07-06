@@ -77,10 +77,10 @@ class KanbanBoard: ObservableObject {
         self.currentlySelectedColumn = StaticProperties.todayColumn
         currentlySelectedItems = []
         
-        addItem(StaticProperties.random(withId: 0), toColumn: 0)
-        globalItemIdCounter += 1
-        addItem(StaticProperties.random(withId: 0), toColumn: 2)
-        globalItemIdCounter += 1
+//        addItem(StaticProperties.random(withId: 0), toColumn: 0)
+//        globalItemIdCounter += 1
+//        addItem(StaticProperties.random(withId: 0), toColumn: 2)
+//        globalItemIdCounter += 1
     }
 
     func listedColumns() -> [KanbanColumn] {
