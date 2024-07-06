@@ -18,6 +18,7 @@ struct ContentView: View {
     @State var isCreatingItem: Bool = false
     @Environment(\.colorScheme) private var scheme
     
+    /// "Main" function, this handles our primary app view
     var body: some View {
         VStack(spacing: 10) {
             topTabBar()
@@ -28,12 +29,11 @@ struct ContentView: View {
                 })
             customTabBar()
         }
-        
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        /// If we are dragging at all, consider it so
+        /// Handle Dragging of items throughout the whole screen
         .dropDestination(for: KanbanItem.self) { _, _ in
             return false
         } isTargeted: { trashCanSelected = $0 }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.gray.opacity(0.2))
     }
     
@@ -113,49 +113,47 @@ struct ContentView: View {
     @ViewBuilder
     func customTabBar() -> some View {
         HStack(spacing: 0) {
-            HStack(spacing: 0) {
-                ForEach(board.listedColumns(), id: \.name) { column in
-                    HStack(spacing: 10) {
-                        Text(column.name)
-                            .font(.callout)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .contentShape(.capsule)
-                    .onTapGesture {
-                        withAnimation(.spring) {
-                            board.currentlySelectedColumnId = column.id
-                            selectedTab = column.id
-                        }
-                    }
-                    .dropDestination(for: KanbanItem.self) { items, _ in
-                        guard let item = items.first else { return false }
-                        board.moveItem(withItemId: item.id, toColumn: column.id)
-                        return true
+            ForEach(board.listedColumns(), id: \.name) { column in
+                HStack(spacing: 10) {
+                    Text(column.name)
+                        .font(.callout.bold())
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .contentShape(.capsule)
+                .onTapGesture {
+                    withAnimation(.spring) {
+                        board.currentlySelectedColumnId = column.id
+                        selectedTab = column.id
                     }
                 }
-            }/// Bakground to show which one is selected
-            .background {
-                GeometryReader {
-                    let size = $0.size
-                    let capsuleWidth = size.width / CGFloat(board.columns.count)
-                    
-                    Capsule()
-                        .fill(scheme == .dark ? .black : .white)
-                        .frame(width: capsuleWidth)
-                        .offset(x: (Double(selectedTab) / Double(board.columns.count - 1)) * (size.width - capsuleWidth))
+                .dropDestination(for: KanbanItem.self) { items, _ in
+                    guard let item = items.first else { return false }
+                    board.moveItem(withItemId: item.id, toColumn: column.id)
+                    return true
                 }
             }
-            .background(.gray.opacity(0.2), in: .capsule)
-            .padding(.horizontal, 15)
         }
-        
+        /// Background to show which one is selected
+        .background {
+            GeometryReader {
+                let size = $0.size
+                let capsuleWidth = size.width / CGFloat(board.columns.count)
+                
+                Capsule()
+                    .fill(scheme == .dark ? .black : .white)
+                    .frame(width: capsuleWidth)
+                    .offset(x: (Double(selectedTab) / Double(board.columns.count - 1)) * (size.width - capsuleWidth))
+            }
+        }
+        .background(.gray.opacity(0.2), in: .capsule)
+        .padding(.horizontal, 15)
     }
     
+    /// Injected function that handles created items from the CreateItemView
     func addItem(_ item: KanbanItem) {
         item.id = board.globalItemIdCounter
         board.addItem(item, toColumn: 0)
-        board.currentlySelectedColumnId = 0
         selectedTab = 0
         board.globalItemIdCounter += 1
     }

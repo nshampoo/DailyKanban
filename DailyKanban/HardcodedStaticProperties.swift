@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// This file represents static properties that might eventually turn into settings, or shared types. For now i'm just placing things here without law
 public struct StaticProperties {
     /// This is only for testing
     static let possibleTites: [String] = ["Clean Dishes", "Cry in a Corner", "Say hi to best girlfriend ever", "Read a Book", "Lay on the Floor", "Pick up pizza", "Give smooches", "Bring Solid State to girlfriend", "Go for a long run", "Buy chocolate milk", "Build fort", "Let girlfriend pick movie for movie night", "Shave", "Post to Strava", "Give kudos"]

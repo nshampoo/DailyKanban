@@ -22,35 +22,28 @@ struct KanbanItemView: View {
                             handleButtonClick()
                         }
                     } label: {
-                        /// Can we make this a delete button? What does that look like
                         Image(systemName: "pencil")
                             .tint(.black)
                     }.padding(.trailing)
                 }
             )
     }
-    
-    // This doens't mutate teh original
+
+    /// TODO: Allow editing of KanbanItems
     private func handleButtonClick() {
         // no-op
     }
 }
 
+/// Handles the text part of a kanban view
 struct UnderlyingKanbanItemView: View {
     @State var rootKanbanItem: KanbanItem
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(rootKanbanItem.title)
-                    .font(.title.bold())
-                Spacer()
-            }
-            
-            if let description = rootKanbanItem.description {
-                Text(description)
-                    .font(.footnote)
-            }
+        HStack {
+            Text(rootKanbanItem.title)
+                .font(.title.bold())
+            Spacer()
         }
         .padding()
     }
