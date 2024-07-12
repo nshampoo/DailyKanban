@@ -15,17 +15,17 @@ struct KanbanItemView: View {
             .fill(rootKanbanItem.color.gradient)
             .frame(height: 50)
             .overlay(
-                HStack(alignment: .center) {
+//                HStack(alignment: .center) {
                     UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
-                    Button {
-                        withAnimation {
-                            handleButtonClick()
-                        }
-                    } label: {
-                        Image(systemName: "pencil")
-                            .tint(.black)
-                    }.padding(.trailing)
-                }
+//                    Button {
+//                        withAnimation {
+//                            handleButtonClick()
+//                        }
+//                    } label: {
+//                        Image(systemName: "pencil")
+//                            .tint(.black)
+//                    }.padding(.trailing)
+//                }
             )
     }
 

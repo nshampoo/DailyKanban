@@ -17,7 +17,12 @@ struct ContentView: View {
     @State var trashCanSelected: Bool = false
     @State var isCreatingItem: Bool = false
     @State var isViewingItem: Bool = false
-    @State var currentlyViewingItem: KanbanItem = StaticProperties.random(withId: 0)
+    @State var currentlyViewingItem: KanbanItem = StaticProperties.random(withId: 0) {
+        didSet {
+            /// Changing this value triggers the isViewingItem to go true, thus truggering teh UI to popup
+            isViewingItem.toggle()
+        }
+    }
     @Environment(\.colorScheme) private var scheme
     
     /// "Main" function, this handles our primary app view
@@ -27,6 +32,7 @@ struct ContentView: View {
             primaryScroller()
             customTabBar()
         }
+        /// Create Item View popup
         .sheet(isPresented: Binding(projectedValue: $isCreatingItem), content: {
             CreateItemNavigationView(escapingKanbanItem: addItem)
                 .presentationDetents([.fraction(0.75)])
@@ -34,7 +40,8 @@ struct ContentView: View {
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(25)
         })
-        .sheet(isPresented: Binding(projectedValue: $isViewingItem), content: {
+        /// View Item View popup
+        .sheet(isPresented: Binding(projectedValue: $isViewingItem), content: { [currentlyViewingItem] in
             ViewItemView(item: currentlyViewingItem)
                 .presentationDetents([.medium, .fraction(0.9)])
                 .presentationBackground(.linearGradient(currentlyViewingItem.color.gradient, startPoint: .top, endPoint: .bottom))
@@ -46,7 +53,7 @@ struct ContentView: View {
             return false
         } isTargeted: { trashCanSelected = $0 }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.gray.opacity(0.2))
+        .background(.gray.gradient.opacity(0.4))
     }
 
     @ViewBuilder
@@ -97,8 +104,7 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .draggable(item)
                     .onTapGesture {
-                        currentlyViewingItem = item
-                        isViewingItem.toggle()
+                        self.currentlyViewingItem = item
                     }
             }
         }
@@ -120,16 +126,16 @@ struct ContentView: View {
                 .padding([.horizontal])
                 .frame(alignment: .center)
                 .background(.gray.opacity(0.2), in: .capsule)
-            Button {
-                withAnimation {
-                    /// TODO: Implement settings
-                }
-            } label: {
-                Image(systemName: "gear")
-                    .tint(.black)
-            }
-            .padding(.trailing)
-            .frame(alignment: .topTrailing)
+//            Button {
+//                withAnimation {
+//                    /// TODO: Implement settings
+//                }
+//            } label: {
+//                Image(systemName: "gear")
+//                    .tint(.black)
+//            }
+//            .padding(.trailing)
+//            .frame(alignment: .topTrailing)
         }
     }
     

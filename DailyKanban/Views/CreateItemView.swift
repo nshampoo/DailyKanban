@@ -16,7 +16,7 @@ struct CreateItemNavigationView: View {
     @State private var description: String = ""
     
     /// Colors
-    @State private var color: StaticProperties.PickableColors = .Gray
+    @State private var color: StaticProperties.PickableColors = .Blue
     
     /// Stepper
     @State var numTodos: Int = 0
@@ -88,7 +88,7 @@ struct CreateItemNavigationView: View {
             Button {
                 title = ""
                 description = ""
-                color = .Gray
+                color = .Blue
                 numTodos = 0
                 todos = [String](repeating:"", count: 10)
             } label: {

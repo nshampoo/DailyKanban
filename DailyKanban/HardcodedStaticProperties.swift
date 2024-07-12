@@ -22,7 +22,8 @@ public struct StaticProperties {
     
     enum PickableColors: String, CaseIterable {
         
-        case Gray
+        /// For now disabling gray cuz its ugly
+//        case Gray
         case Blue
         case Green
         case Red
@@ -30,8 +31,8 @@ public struct StaticProperties {
         
         func asColor() -> Color {
             switch self {
-            case .Gray:
-                return .gray
+//            case .Gray:
+//                return .gray
             case .Blue:
                 return .blue
             case .Green:
@@ -44,7 +45,7 @@ public struct StaticProperties {
         }
         
         static func randomColor() -> Color {
-            (PickableColors.allCases.randomElement() ?? .Gray).asColor()
+            (PickableColors.allCases.randomElement() ?? .Blue).asColor()
         }
     }
 

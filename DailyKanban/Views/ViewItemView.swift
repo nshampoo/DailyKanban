@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ViewItemView: View {
-//    @EnvironmentObject var board: KanbanBoard
-    @State var item: KanbanItem
-    
+    @ObservedObject var item: KanbanItem
+
     var body: some View {
         VStack {
             Text(item.title)
@@ -21,15 +20,15 @@ struct ViewItemView: View {
                     .font(.subheadline)
                     .padding()
             }
-            ForEach(item.todoItems, id: \.description) { item in
+            ForEach(item.todoItems) { item in
                 GeometryReader {
                     let size = $0.size
-                    
+                    let imageString = item.isComplete ? "checkmark.square" : "square"
                     Button {
                         item.isComplete.toggle()
                     } label: {
                         HStack {
-                            Image(systemName: item.isComplete ? "checkmark.square" : "square")
+                            Image(systemName: imageString)
                                 .tint(.black)
                             Text(item.description)
                                 .tint(.black)
@@ -37,7 +36,6 @@ struct ViewItemView: View {
                     }
                     .frame(minWidth: size.width, alignment: .leading)
                 }
-                
             }
             .padding()
             Spacer()

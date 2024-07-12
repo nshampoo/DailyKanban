@@ -13,7 +13,7 @@ import SwiftUI
 
 
 final class KanbanItem: ObservableObject {
-    final public class Todo: ObservableObject {
+    final public class Todo: ObservableObject, Identifiable {
         @Published var isComplete: Bool
         var description: String
         
