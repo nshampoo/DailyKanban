@@ -28,7 +28,7 @@ final class KanbanItem: ObservableObject {
 
     var title: String
     
-    var todoItems: [Todo]
+    @Published var todoItems: [Todo]
     
     var description: String?
     
