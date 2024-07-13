@@ -22,8 +22,6 @@ public struct StaticProperties {
     
     enum PickableColors: String, CaseIterable {
         
-        /// For now disabling gray cuz its ugly
-//        case Gray
         case Blue
         case Green
         case Red
@@ -31,8 +29,6 @@ public struct StaticProperties {
         
         func asColor() -> Color {
             switch self {
-//            case .Gray:
-//                return .gray
             case .Blue:
                 return .blue
             case .Green:
@@ -62,7 +58,6 @@ public struct StaticProperties {
         
         return item
     }
-
 
     static let todoColumn = KanbanColumn(id: 0, isVisible: true, name: "ToDo", items: [:])
     static let waitingColumn = KanbanColumn(id: 1, isVisible: true, name: "Waiting", items: [:])
