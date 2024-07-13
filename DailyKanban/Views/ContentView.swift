@@ -126,16 +126,6 @@ struct ContentView: View {
                 .padding([.horizontal])
                 .frame(alignment: .center)
                 .background(.gray.opacity(0.2), in: .capsule)
-//            Button {
-//                withAnimation {
-//                    /// TODO: Implement settings
-//                }
-//            } label: {
-//                Image(systemName: "gear")
-//                    .tint(.black)
-//            }
-//            .padding(.trailing)
-//            .frame(alignment: .topTrailing)
         }
     }
     

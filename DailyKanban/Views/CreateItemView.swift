@@ -42,7 +42,6 @@ struct CreateItemNavigationView: View {
                 .padding([.leading, .trailing, .bottom])
             Form {
                 Section() {
-//                    TextField("Title", text: $title)
                     TextField("Description", text: $description)
                 }
                 .padding(.horizontal)
