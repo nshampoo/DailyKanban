@@ -75,6 +75,7 @@ struct ContentView: View {
         .scrollIndicators(.hidden)
         .scrollTargetBehavior(.paging)
         .scrollClipDisabled()
+        .scrollDisabled(trashCanSelected)
         .overlay(alignment: .bottomTrailing) {
             Button {
                 isCreatingItem.toggle()
@@ -168,8 +169,11 @@ struct ContentView: View {
         .background(.gray.opacity(0.2), in: .capsule)
         .padding(.horizontal, 15)
     }
-    
-    /// Injected function that handles created items from the CreateItemView
+}
+
+/// This extension represents all of our helper functions that get injected into other views
+extension ContentView {
+
     func addItem(_ item: KanbanItem) {
         item.id = board.globalItemIdCounter
         board.addItem(item, toColumn: 0)
