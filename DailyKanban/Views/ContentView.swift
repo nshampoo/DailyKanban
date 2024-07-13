@@ -89,7 +89,7 @@ struct ContentView: View {
                 guard let item = items.first else { return false }
                 board.removeItem(withItemId: item.id)
                 return true
-            }
+            } isTargeted: { trashCanSelected = $0 }
             .padding(15)
             .padding(.trailing, 10)
         }
@@ -150,7 +150,7 @@ struct ContentView: View {
                     guard let item = items.first else { return false }
                     board.moveItem(withItemId: item.id, toColumn: column.id)
                     return true
-                }
+                } isTargeted: { trashCanSelected = $0 }
             }
         }
         /// Background to show which one is selected
