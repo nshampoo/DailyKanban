@@ -15,23 +15,8 @@ struct KanbanItemView: View {
             .fill(rootKanbanItem.color.gradient)
             .frame(height: 50)
             .overlay(
-//                HStack(alignment: .center) {
-                    UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
-//                    Button {
-//                        withAnimation {
-//                            handleButtonClick()
-//                        }
-//                    } label: {
-//                        Image(systemName: "pencil")
-//                            .tint(.black)
-//                    }.padding(.trailing)
-//                }
+                UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
             )
-    }
-
-    /// TODO: Allow editing of KanbanItems
-    private func handleButtonClick() {
-        // no-op
     }
 }
 
