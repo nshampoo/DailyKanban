@@ -42,7 +42,7 @@ struct ContentView: View {
         })
         /// View Item View popup
         .sheet(isPresented: Binding(projectedValue: $isViewingItem), content: { [currentlyViewingItem] in
-            ViewItemView(item: currentlyViewingItem)
+            ViewItemView(item: currentlyViewingItem, escapingDeletionTask: deleteItem)
                 .presentationDetents([.medium, .fraction(0.9)])
                 .presentationBackground(.linearGradient(currentlyViewingItem.color.gradient, startPoint: .top, endPoint: .bottom))
                 .presentationDragIndicator(.hidden)
@@ -53,7 +53,7 @@ struct ContentView: View {
             return false
         } isTargeted: { trashCanSelected = $0 }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.gray.gradient.opacity(0.4))
+        .background(.gray.gradient.opacity(0.3))
     }
 
     @ViewBuilder
@@ -175,6 +175,12 @@ struct ContentView: View {
         board.addItem(item, toColumn: 0)
         selectedTab = 0
         board.globalItemIdCounter += 1
+    }
+    
+    func deleteItem(_ shouldDelete: Bool) {
+        guard shouldDelete else { return }
+        
+        board.removeItem(withItemId: currentlyViewingItem.id)
     }
 }
 

@@ -8,26 +8,47 @@
 import SwiftUI
 
 struct ViewItemView: View {
+    @Environment(\.dismiss) var dismiss
+
     @StateObject var item: KanbanItem
 
+    /// When we dismiss this view, if we have a kanban Item we want to share back, we utilzie escapingKanbanItem to do so
+    /// In theory any "user" could make this a different function if they wanted too. However in practice this just saves to the board
+    var escapingDeletionTask: (_ shouldDelete: Bool) -> Void
+
     var body: some View {
-        VStack {
-            Text(item.title)
-                .font(.title.bold())
-                .padding()
-            if let description = item.description {
-                Text(description)
-                    .font(.subheadline)
+        NavigationStack {
+            VStack {
+                Text(item.title)
+                    .font(.title.bold())
                     .padding()
-            }
-            ForEach(item.todoItems) { todo in
-                CheckableTodoItem(todo: todo)
+                if let description = item.description {
+                    Text(description)
+                        .font(.subheadline)
+                        .padding()
+                }
+                ForEach(item.todoItems) { todo in
+                    CheckableTodoItem(todo: todo)
+                }
+                .padding()
+                Spacer()
             }
             .padding()
-            Spacer()
+            .frame(alignment: .top)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        escapingDeletionTask(true)
+                        dismiss()
+                    } label: {
+                        Image(systemName: "trash.circle")
+                            .tint(.black)
+                            .font(.title)
+                    }
+                    .padding()
+                }
+            }
         }
-        .padding()
-        .frame(alignment: .top)
     }
 }
 
@@ -54,5 +75,5 @@ fileprivate struct CheckableTodoItem: View {
 }
 
 #Preview {
-    ViewItemView(item: StaticProperties.random(withId: 0))
+    ViewItemView(item: StaticProperties.random(withId: 0), escapingDeletionTask: { _ in return })
 }
