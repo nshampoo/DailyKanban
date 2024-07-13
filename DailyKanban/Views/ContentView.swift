@@ -35,7 +35,7 @@ struct ContentView: View {
         /// Create Item View popup
         .sheet(isPresented: Binding(projectedValue: $isCreatingItem), content: {
             CreateItemNavigationView(escapingKanbanItem: addItem)
-                .presentationDetents([.fraction(0.75)])
+                .presentationDetents([.fraction(0.8)])
                 .presentationBackground(.thinMaterial)
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(25)

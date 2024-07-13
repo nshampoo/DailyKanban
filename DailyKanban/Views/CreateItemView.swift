@@ -38,9 +38,11 @@ struct CreateItemNavigationView: View {
     
     var body: some View {
         NavigationStack {
+            KanbanBuildingItemView(title: $title, color: $color)
+                .padding([.leading, .trailing, .bottom])
             Form {
-                Section(header: Text("Profile")) {
-                    TextField("Title", text: $title)
+                Section() {
+//                    TextField("Title", text: $title)
                     TextField("Description", text: $description)
                 }
                 .padding(.horizontal)

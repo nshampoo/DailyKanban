@@ -15,19 +15,39 @@ struct KanbanItemView: View {
             .fill(rootKanbanItem.color.gradient)
             .frame(height: 50)
             .overlay(
-                UnderlyingKanbanItemView(rootKanbanItem: rootKanbanItem)
+                UnderlyingKanbanItemView(title: $rootKanbanItem.title, isEditable: false)
+            )
+    }
+}
+
+struct KanbanBuildingItemView: View {
+    @Binding var title: String
+    @Binding var color: StaticProperties.PickableColors
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 15)
+            .fill(color.asColor().gradient)
+            .frame(height: 50)
+            .overlay(
+                UnderlyingKanbanItemView(title: $title, isEditable: true)
             )
     }
 }
 
 /// Handles the text part of a kanban view
 struct UnderlyingKanbanItemView: View {
-    @State var rootKanbanItem: KanbanItem
+    @Binding var title: String
+    @State var isEditable: Bool
     
     var body: some View {
         HStack {
-            Text(rootKanbanItem.title)
-                .font(.title.bold())
+            if isEditable {
+                TextField("Title", text: $title)
+                    .font(.title.bold())
+            } else {
+                Text(title)
+                    .font(.title.bold())
+            }
             Spacer()
         }
         .padding()
