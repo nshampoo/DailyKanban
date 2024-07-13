@@ -67,15 +67,13 @@ public struct StaticProperties {
     static let todoColumn = KanbanColumn(id: 0, isVisible: true, name: "ToDo", items: [:])
     static let waitingColumn = KanbanColumn(id: 1, isVisible: true, name: "Waiting", items: [:])
     static let todayColumn = KanbanColumn(id: 2, isVisible: true, name: "Today", items: [:])
-    static let inProgressColumn = KanbanColumn(id: 3, isVisible: true, name: "Doing", items: [:])
-    static let doneColumn = KanbanColumn(id: 4, isVisible: true, name: "Done", items: [:])
-    static let retentionColumn = KanbanColumn(id: 5, isVisible: false, name: "Retention", items: [:])
+    static let doneColumn = KanbanColumn(id: 3, isVisible: true, name: "Done", items: [:])
+    static let retentionColumn = KanbanColumn(id: 4, isVisible: false, name: "Retention", items: [:])
     static let sampleKanbanStart: [Int:KanbanColumn] = [
         0: todoColumn,
         1: waitingColumn,
         2: todayColumn,
-        3: inProgressColumn,
-        4: doneColumn,
+        3: doneColumn,
     ]
 
 }
