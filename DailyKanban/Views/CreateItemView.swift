@@ -10,7 +10,6 @@ import SwiftUI
 ///https://blog.logrocket.com/building-forms-swiftui-comprehensive-guide/
 struct CreateItemNavigationView: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(\.managedObjectContext) var moc
     
     /// Strings
     @State private var title: String = ""
@@ -103,6 +102,7 @@ struct CreateItemNavigationView: View {
             Button {
                 guard !title.isEmpty,
                         numTodos <= maxTodos else { return }
+                let moc = DataController.shared.persistentContainer.viewContext
                 let kanbanItem = PersistableKanbanItem(context: moc)
                 kanbanItem.title = title
                 kanbanItem.todoDescription = description
@@ -116,7 +116,7 @@ struct CreateItemNavigationView: View {
                     persistableTodo.desc = todo
                     persistableTodos.append(persistableTodo)
                 }
-                kanbanItem.todoItem = persistableTodos
+                kanbanItem.todoItem = Set(persistableTodos)
                 escapingKanbanItem(kanbanItem)
                 dismiss()
             } label: {

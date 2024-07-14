@@ -65,7 +65,7 @@ fileprivate struct CheckableTodoItem: View {
                 HStack {
                     Image(systemName: imageString)
                         .tint(.black)
-                    Text(todo.description)
+                    Text(todo.desc)
                         .tint(.black)
                 }
             }

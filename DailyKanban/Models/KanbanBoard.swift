@@ -17,7 +17,6 @@ import CoreData
 ///
 /// In theory this whole model is decodable, so we can save it in some json, to be accessed
 class KanbanBoard: ObservableObject {
-    let moc: NSManagedObjectContext
     let dataController: DataController
     var globalItemIdCounter: Int = 0
     @Published var columns: [KanbanColumn] = []
@@ -82,19 +81,16 @@ class KanbanBoard: ObservableObject {
     }
     
     /// This is a test init, that allows me to have sample data
-    init(items: [PersistableKanbanItem], moc: NSManagedObjectContext, dataController: DataController) {
+    init(dataController: DataController) {
         let startingColumns = StaticProperties.sampleKanbanStart
         self.currentlySelectedColumn = startingColumns.first!
-        
-        for item in items {
+
+        for item in dataController.fetchItems() {
             startingColumns[Int(item.column)].addItem(item)
         }
         
-        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
-        
         currentlySelectedItems = startingColumns[2].items
         self.columns = startingColumns
-        self.moc = moc
         self.dataController = dataController
     }
     
@@ -124,18 +120,12 @@ class KanbanBoard: ObservableObject {
     
     private func saveItemToCoreData(_ item: PersistableKanbanItem) {
         Task {
-            do {
-                dataController.save()
-//                try moc.save()
-            } catch {
-                print("Failed to save core data? Error: \(error)")
-            }
+            dataController.save()
         }
     }
     
     private func removeItemFromCoreData(_ item: PersistableKanbanItem) {
         dataController.delete(item: item)
-//        moc.delete(item)
     }
 }
 

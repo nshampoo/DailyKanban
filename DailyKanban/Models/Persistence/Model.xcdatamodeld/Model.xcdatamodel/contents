@@ -6,7 +6,7 @@
         <attribute name="ranking" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="todoDescription" optional="YES" attributeType="String"/>
-        <relationship name="todoItem" toMany="YES" maxCount="10" deletionRule="Nullify" ordered="YES" destinationEntity="PersistableTodoItem"/>
+        <relationship name="todoItem" toMany="YES" maxCount="10" deletionRule="Nullify" destinationEntity="PersistableTodoItem"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="title"/>

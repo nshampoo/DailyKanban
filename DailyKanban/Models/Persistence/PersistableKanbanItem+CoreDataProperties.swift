@@ -13,6 +13,7 @@ import SwiftUI
 
 
 extension PersistableKanbanItem {
+    
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PersistableKanbanItem> {
         return NSFetchRequest<PersistableKanbanItem>(entityName: "PersistableKanbanItem")
@@ -23,7 +24,7 @@ extension PersistableKanbanItem {
     @NSManaged public var title: String
     @NSManaged public var todoDescription: String?
     @NSManaged public var ranking: Int16
-    @NSManaged public var todoItem: Array<PersistableTodoItem>
+    @NSManaged public var todoItem: Set<PersistableTodoItem>
     
     public func wrappedColor() -> Color {
         StaticProperties.PickableColors(rawValue: color)?.asColor() ?? .gray
@@ -70,16 +71,16 @@ extension PersistableKanbanItem : Identifiable { }
 /// Extremely simple comparability, should not be used longterm
 extension PersistableKanbanItem: Comparable {
     public static func < (lhs: PersistableKanbanItem, rhs: PersistableKanbanItem) -> Bool {
-        lhs.id < rhs.id
+        lhs.ranking < rhs.ranking
     }
     
     public static func == (lhs: PersistableKanbanItem, rhs: PersistableKanbanItem) -> Bool {
-        lhs.id == rhs.id
+        lhs.ranking == rhs.ranking
     }
 }
 
-//extension PersistableKanbanItem: Transferable {
-//    public static var transferRepresentation: some TransferRepresentation {
-//        CodableRepresentation(for: PersistableKanbanItem.self, contentType: .image)
-//    }
-//}
+extension PersistableKanbanItem: Transferable {
+    public static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(for: PersistableKanbanItem.self, contentType: .image)
+    }
+}

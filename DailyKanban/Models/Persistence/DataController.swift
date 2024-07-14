@@ -54,4 +54,21 @@ extension DataController {
         persistentContainer.viewContext.delete(item)
         save()
     }
+    
+    func fetchItems() -> [PersistableKanbanItem] {
+        var persistableKanbanItems: [PersistableKanbanItem] = []
+        do {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PersistableKanbanItem")
+            let results = try persistentContainer.viewContext.fetch(request)
+            for result in results {
+                if let result = result as? PersistableKanbanItem {
+                    persistableKanbanItems.append(result)
+                }
+            }
+        } catch {
+            assertionFailure("Failed to fetch items?")
+        }
+        
+        return persistableKanbanItems
+    }
 }

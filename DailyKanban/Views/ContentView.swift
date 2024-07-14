@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var board: KanbanBoard
-    @Environment(\.managedObjectContext) var moc
 
     @State var selectedTab: Int = 2 {
         didSet {
