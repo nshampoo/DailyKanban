@@ -10,6 +10,7 @@ import SwiftUI
 ///https://blog.logrocket.com/building-forms-swiftui-comprehensive-guide/
 struct CreateItemNavigationView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
     
     /// Strings
     @State private var title: String = ""
@@ -25,9 +26,9 @@ struct CreateItemNavigationView: View {
     
     /// When we dismiss this view, if we have a kanban Item we want to share back, we utilzie escapingKanbanItem to do so
     /// In theory any "user" could make this a different function if they wanted too. However in practice this just saves to the board
-    var escapingKanbanItem: (_ item: KanbanItem) -> Void
+    var escapingKanbanItem: (_ item: PersistableKanbanItem) -> Void
     
-    public init(numTodos: Int = 0, maxTodos: Int = 10, escapingKanbanItem: @escaping (_ item: KanbanItem) -> Void) {
+    public init(numTodos: Int = 0, maxTodos: Int = 10, escapingKanbanItem: @escaping (_ item: PersistableKanbanItem) -> Void) {
         
         self.numTodos = numTodos
         self.maxTodos = maxTodos
@@ -100,11 +101,22 @@ struct CreateItemNavigationView: View {
         }
         ToolbarItem(placement: .topBarTrailing) {
             Button {
-                guard let kanbanItem = KanbanItem(checkingForEmptyStrings: title,
-                                                  description: description,
-                                                  color: color.asColor(),
-                                                  todos: todos,
-                                                  maxTodos: numTodos) else { return }
+                guard !title.isEmpty,
+                        numTodos <= maxTodos else { return }
+                let kanbanItem = PersistableKanbanItem(context: moc)
+                kanbanItem.title = title
+                kanbanItem.todoDescription = description
+                kanbanItem.color = color.rawValue
+                var persistableTodos: [PersistableTodoItem] = []
+                for todo in todos {
+                    guard !todo.isEmpty else { break }
+
+                    let persistableTodo = PersistableTodoItem(context: moc)
+                    persistableTodo.isComplete = false
+                    persistableTodo.desc = todo
+                    persistableTodos.append(persistableTodo)
+                }
+                kanbanItem.todoItem = persistableTodos
                 escapingKanbanItem(kanbanItem)
                 dismiss()
             } label: {

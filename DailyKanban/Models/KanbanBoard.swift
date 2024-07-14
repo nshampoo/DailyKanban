@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 
@@ -16,42 +17,50 @@ import Foundation
 ///
 /// In theory this whole model is decodable, so we can save it in some json, to be accessed
 class KanbanBoard: ObservableObject {
+    let moc: NSManagedObjectContext
+    let dataController: DataController
     var globalItemIdCounter: Int = 0
-    @Published var columns: [Int:KanbanColumn] = [:]
+    @Published var columns: [KanbanColumn] = []
     @Published var currentlySelectedColumn: KanbanColumn
-    @Published var currentlySelectedItems: [KanbanItem]
+    @Published var currentlySelectedItems: [PersistableKanbanItem]
     
     var currentlySelectedColumnId = 2 {
         didSet {
-            currentlySelectedColumn = columns[currentlySelectedColumnId] ?? StaticProperties.todayColumn
-            currentlySelectedItems = currentlySelectedColumn.items.values.sorted()
+            currentlySelectedColumn = columns[currentlySelectedColumnId]
+            currentlySelectedItems = currentlySelectedColumn.items.sorted()
         }
     }
     
     /// API to allow UI to get a list of items for a certain column
-    func items(forColumnWithId id: Int? = nil) throws -> [Int: KanbanItem] {
+    func items(forColumnWithId id: Int? = nil) throws -> [PersistableKanbanItem] {
         let id = id ?? currentlySelectedColumnId
-        guard let column = columns[id] else { throw KanbanErrors.invalidParameters }
-
-        return column.items
-    }
-
-    func addItem(_ item: KanbanItem, toColumn: Int) {
-        columns[toColumn]?.addItem(item)
         
-        updateItemsIfNeeded(forColumn: toColumn)
+        return columns[id].items.sorted()
+    }
+    
+    func addItem(_ item: PersistableKanbanItem) {
+        saveItemToCoreData(item)
+        columns[Int(item.column)].addItem(item)
+        
+        updateItemsIfNeeded(forColumn: Int(item.column))
     }
     
     func moveItem(withItemId itemId: Int, fromColumn: Int, toColumn: Int) throws {
-        guard let item = try columns[fromColumn]?.removeItem(withId: itemId) else { throw KanbanErrors.invalidParameters }
+        let item: PersistableKanbanItem
+        do {
+            item = try columns[fromColumn].removeItem(withId: itemId)
+        } catch {
+            throw error
+        }
+        item.column = Int16(toColumn)
         updateItemsIfNeeded(forColumn: fromColumn)
         
-        addItem(item, toColumn: toColumn)
+        addItem(item)
     }
     
     func moveItem(withItemId itemId: Int, toColumn: Int) {
         guard let fromColumnId = findColumnForItem(withId: itemId) else { return }
-
+        
         do {
             try moveItem(withItemId: itemId, fromColumn: fromColumnId, toColumn: toColumn)
         } catch {
@@ -61,31 +70,42 @@ class KanbanBoard: ObservableObject {
     
     func removeItem(withItemId itemId: Int) {
         guard let fromColumnId = findColumnForItem(withId: itemId) else { return }
-        
         do {
-            try columns[fromColumnId]?.removeItem(withId: itemId)
+            let item = try columns[fromColumnId].removeItem(withId: itemId)
+            removeItemFromCoreData(item)
         } catch {
-            assertionFailure("Failed to remove an item?")
+            assertionFailure("Removing an item that doesn't exist?")
         }
+        
         
         updateItemsIfNeeded(forColumn: fromColumnId)
     }
     
     /// This is a test init, that allows me to have sample data
-    init(columns: [Int : KanbanColumn]) {
-        self.columns = columns
-        self.currentlySelectedColumn = StaticProperties.todayColumn
-        currentlySelectedItems = []
+    init(items: [PersistableKanbanItem], moc: NSManagedObjectContext, dataController: DataController) {
+        let startingColumns = StaticProperties.sampleKanbanStart
+        self.currentlySelectedColumn = startingColumns.first!
+        
+        for item in items {
+            startingColumns[Int(item.column)].addItem(item)
+        }
+        
+        print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+        
+        currentlySelectedItems = startingColumns[2].items
+        self.columns = startingColumns
+        self.moc = moc
+        self.dataController = dataController
     }
-
+    
     func listedColumns() -> [KanbanColumn] {
-        columns.values.sorted()
+        columns.sorted()
     }
     
     func updateItemsIfNeeded(forColumn: Int) {
         guard forColumn == currentlySelectedColumnId else { return }
         do {
-            currentlySelectedItems = try items().values.sorted()
+            currentlySelectedItems = try items()
         } catch {
             assertionFailure("no")
         }
@@ -94,14 +114,29 @@ class KanbanBoard: ObservableObject {
     private func findColumnForItem(withId id: Int) -> Int? {
         var fromColumnId: Int?
         for column in columns {
-            if column.value.items.contains(where: { $0.key == id }) {
-                fromColumnId = column.key
+            if column.items.contains(where: { $0.ranking == id }) {
+                fromColumnId = Int(column.id)
                 break
             }
         }
         return fromColumnId
     }
-
+    
+    private func saveItemToCoreData(_ item: PersistableKanbanItem) {
+        Task {
+            do {
+                dataController.save()
+//                try moc.save()
+            } catch {
+                print("Failed to save core data? Error: \(error)")
+            }
+        }
+    }
+    
+    private func removeItemFromCoreData(_ item: PersistableKanbanItem) {
+        dataController.delete(item: item)
+//        moc.delete(item)
+    }
 }
 
 enum KanbanErrors: Error {

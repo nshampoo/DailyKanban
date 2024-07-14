@@ -32,13 +32,13 @@ final class KanbanItem: ObservableObject {
     
     var description: String?
     
-    var color: Color
+    var color: StaticProperties.PickableColors
     
     /// The time in hours beetween this item coming back
     /// TODO: Implement retention
     var retention: Double?
     
-    public init(id: Int, title: String, todoItems: [Todo], description: String?, color: Color, retention: Double?) {
+    public init(id: Int, title: String, todoItems: [Todo], description: String?, color: StaticProperties.PickableColors, retention: Double?) {
         self.id = id
         self.title = title
         self.todoItems = todoItems
@@ -61,7 +61,7 @@ extension KanbanItem: Comparable {
 
 extension KanbanItem: Transferable, Identifiable {
     static var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(for: KanbanItem.self, contentType: .content)
+        CodableRepresentation(for: KanbanItem.self, contentType: .image)
     }
 }
 
@@ -80,7 +80,7 @@ extension KanbanItem: Codable {
                   title: title,
                   todoItems: todoItems,
                   description: description,
-                  color: StaticProperties.PickableColors.randomColor(),
+                  color: StaticProperties.PickableColors.randomElement(),
                   retention: retention)
     }
     
@@ -96,7 +96,7 @@ extension KanbanItem: Codable {
 }
 
 extension KanbanItem {
-    convenience init?(checkingForEmptyStrings title: String, description: String, color: Color, todos: [String], maxTodos: Int) {
+    convenience init?(checkingForEmptyStrings title: String, description: String, color: StaticProperties.PickableColors, todos: [String], maxTodos: Int) {
         guard !title.isEmpty else { return nil }
         
         let description = description.isEmpty ? nil : description

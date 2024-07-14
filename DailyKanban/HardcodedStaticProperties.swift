@@ -40,6 +40,10 @@ public struct StaticProperties {
             }
         }
         
+        static func randomElement() -> PickableColors {
+            (PickableColors.allCases.randomElement() ?? .Blue)
+        }
+
         static func randomColor() -> Color {
             (PickableColors.allCases.randomElement() ?? .Blue).asColor()
         }
@@ -53,22 +57,16 @@ public struct StaticProperties {
                               title: StaticProperties.possibleTites.randomElement() ?? "Failed to get random?",
                               todoItems: [.init(isComplete: false, description: "Walk to girlfriend")],
                               description: description,
-                              color: PickableColors.randomColor(),
+                              color: PickableColors.randomElement(),
                               retention: nil)
         
         return item
     }
 
-    static let todoColumn = KanbanColumn(id: 0, isVisible: true, name: "ToDo", items: [:])
-    static let waitingColumn = KanbanColumn(id: 1, isVisible: true, name: "Waiting", items: [:])
-    static let todayColumn = KanbanColumn(id: 2, isVisible: true, name: "Today", items: [:])
-    static let doneColumn = KanbanColumn(id: 3, isVisible: true, name: "Done", items: [:])
-    static let retentionColumn = KanbanColumn(id: 4, isVisible: false, name: "Retention", items: [:])
-    static let sampleKanbanStart: [Int:KanbanColumn] = [
-        0: todoColumn,
-        1: waitingColumn,
-        2: todayColumn,
-        3: doneColumn,
-    ]
-
+    static let todoColumn = KanbanColumn(id: 0, isVisible: true, name: "ToDo", items: [])
+    static let waitingColumn = KanbanColumn(id: 1, isVisible: true, name: "Waiting", items: [])
+    static let todayColumn = KanbanColumn(id: 2, isVisible: true, name: "Today", items: [])
+    static let doneColumn = KanbanColumn(id: 3, isVisible: true, name: "Done", items: [])
+    static let retentionColumn = KanbanColumn(id: 4, isVisible: false, name: "Retention", items: [])
+    static let sampleKanbanStart: [KanbanColumn] = [todoColumn, waitingColumn, todayColumn, doneColumn]
 }

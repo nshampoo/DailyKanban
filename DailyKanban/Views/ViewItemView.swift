@@ -10,7 +10,7 @@ import SwiftUI
 struct ViewItemView: View {
     @Environment(\.dismiss) var dismiss
 
-    @StateObject var item: KanbanItem
+    @StateObject var item: PersistableKanbanItem
 
     /// When we dismiss this view, if we have a kanban Item we want to share back, we utilzie escapingKanbanItem to do so
     /// In theory any "user" could make this a different function if they wanted too. However in practice this just saves to the board
@@ -22,12 +22,12 @@ struct ViewItemView: View {
                 Text(item.title)
                     .font(.title.bold())
                     .padding()
-                if let description = item.description {
+                if let description = item.todoDescription {
                     Text(description)
                         .font(.subheadline)
                         .padding()
                 }
-                ForEach(item.todoItems) { todo in
+                ForEach(item.todoItem.sorted()) { todo in
                     CheckableTodoItem(todo: todo)
                 }
                 .padding()
@@ -53,7 +53,7 @@ struct ViewItemView: View {
 }
 
 fileprivate struct CheckableTodoItem: View {
-    @ObservedObject var todo: KanbanItem.Todo
+    @ObservedObject var todo: PersistableTodoItem
 
     var body: some View {
         GeometryReader {
@@ -74,6 +74,6 @@ fileprivate struct CheckableTodoItem: View {
     }
 }
 
-#Preview {
-    ViewItemView(item: StaticProperties.random(withId: 0), escapingDeletionTask: { _ in return })
-}
+//#Preview {
+//    ViewItemView(item: StaticProperties.random(withId: 0), escapingDeletionTask: { _ in return })
+//}
