@@ -49,20 +49,6 @@ public struct StaticProperties {
         }
     }
 
-    static func random(withId id: Int) -> KanbanItem {
-        let descriptions: [String] = [StaticProperties.description, "Hi peoples!"]
-        
-        let description = Int.random(in: 0 ... 10) > 10 ? descriptions.randomElement() : nil
-        let item = KanbanItem(id: id,
-                              title: StaticProperties.possibleTites.randomElement() ?? "Failed to get random?",
-                              todoItems: [.init(isComplete: false, description: "Walk to girlfriend")],
-                              description: description,
-                              color: PickableColors.randomElement(),
-                              retention: nil)
-        
-        return item
-    }
-
     static let todoColumn = KanbanColumn(id: 0, isVisible: true, name: "ToDo", items: [])
     static let waitingColumn = KanbanColumn(id: 1, isVisible: true, name: "Waiting", items: [])
     static let todayColumn = KanbanColumn(id: 2, isVisible: true, name: "Today", items: [])

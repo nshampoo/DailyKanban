@@ -61,6 +61,8 @@ fileprivate struct CheckableTodoItem: View {
             let imageString = todo.isComplete ? "checkmark.square" : "square"
             Button {
                 todo.isComplete.toggle()
+                /// Any time we update a TODO we need to save the coredata
+                DataController.shared.save()
             } label: {
                 HStack {
                     Image(systemName: imageString)

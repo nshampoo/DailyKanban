@@ -19,7 +19,6 @@
 		19D2AE282C3706FF00C91C4B /* DailyKanbanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */; };
 		19D2AE2A2C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */; };
 		19D2AE372C37080200C91C4B /* KanbanItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE362C37080200C91C4B /* KanbanItemView.swift */; };
-		19D2AE3A2C37197500C91C4B /* KanbanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE392C37197500C91C4B /* KanbanItem.swift */; };
 		19D2AE3D2C373AA700C91C4B /* KanbanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */; };
 		19D2AE3F2C373ADD00C91C4B /* KanbanColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */; };
 		19D2AE442C398A3200C91C4B /* HardcodedStaticProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2AE432C398A3200C91C4B /* HardcodedStaticProperties.swift */; };
@@ -62,7 +61,6 @@
 		19D2AE272C3706FF00C91C4B /* DailyKanbanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITests.swift; sourceTree = "<group>"; };
 		19D2AE292C3706FF00C91C4B /* DailyKanbanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyKanbanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		19D2AE362C37080200C91C4B /* KanbanItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanItemView.swift; sourceTree = "<group>"; };
-		19D2AE392C37197500C91C4B /* KanbanItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanItem.swift; sourceTree = "<group>"; };
 		19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanBoard.swift; sourceTree = "<group>"; };
 		19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanbanColumn.swift; sourceTree = "<group>"; };
 		19D2AE432C398A3200C91C4B /* HardcodedStaticProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedStaticProperties.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				19D2AE8F2C444EE700C91C4B /* Persistence */,
-				19D2AE392C37197500C91C4B /* KanbanItem.swift */,
 				19D2AE3C2C373AA700C91C4B /* KanbanBoard.swift */,
 				19D2AE3E2C373ADD00C91C4B /* KanbanColumn.swift */,
 			);
@@ -334,7 +331,6 @@
 				195A11EA2C4457AB002148DF /* PersistableKanbanItem+CoreDataProperties.swift in Sources */,
 				195A11EB2C4457AB002148DF /* PersistableTodoItem+CoreDataClass.swift in Sources */,
 				195A11EC2C4457AB002148DF /* PersistableTodoItem+CoreDataProperties.swift in Sources */,
-				19D2AE3A2C37197500C91C4B /* KanbanItem.swift in Sources */,
 				19D2AE3D2C373AA700C91C4B /* KanbanBoard.swift in Sources */,
 				19D2AE0D2C3706FD00C91C4B /* DailyKanbanApp.swift in Sources */,
 				19D2AE932C44504500C91C4B /* DataController.swift in Sources */,

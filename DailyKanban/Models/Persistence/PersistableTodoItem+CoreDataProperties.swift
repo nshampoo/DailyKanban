@@ -18,4 +18,14 @@ extension PersistableTodoItem {
 
     @NSManaged public var isComplete: Bool
     @NSManaged public var desc: String
+    @NSManaged public var order: Int16
 }
+
+extension PersistableTodoItem: Identifiable { }
+
+extension PersistableTodoItem: Comparable {
+    public static func < (lhs: PersistableTodoItem, rhs: PersistableTodoItem) -> Bool {
+        lhs.order < rhs.order
+    }
+}
+

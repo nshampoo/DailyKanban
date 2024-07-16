@@ -35,15 +35,17 @@ class DataController: ObservableObject {
 extension DataController {
     // Add a convenience method to commit changes to the store.
     func save() {
-        // Verify that the context has uncommitted changes.
-        guard persistentContainer.viewContext.hasChanges else { return }
-        
-        do {
-            // Attempt to save changes.
-            try persistentContainer.viewContext.save()
-        } catch {
-            // Handle the error appropriately.
-            print("Failed to save the context:", error.localizedDescription)
+        Task {
+            // Verify that the context has uncommitted changes.
+            guard persistentContainer.viewContext.hasChanges else { return }
+            
+            do {
+                // Attempt to save changes.
+                try persistentContainer.viewContext.save()
+            } catch {
+                // Handle the error appropriately.
+                print("Failed to save the context:", error.localizedDescription)
+            }
         }
     }
     

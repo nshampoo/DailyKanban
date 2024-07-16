@@ -108,13 +108,16 @@ struct CreateItemNavigationView: View {
                 kanbanItem.todoDescription = description
                 kanbanItem.color = color.rawValue
                 var persistableTodos: [PersistableTodoItem] = []
+                var numTodos = Int16(0)
                 for todo in todos {
                     guard !todo.isEmpty else { break }
 
                     let persistableTodo = PersistableTodoItem(context: moc)
                     persistableTodo.isComplete = false
                     persistableTodo.desc = todo
+                    persistableTodo.order = numTodos
                     persistableTodos.append(persistableTodo)
+                    numTodos += 1
                 }
                 kanbanItem.todoItem = Set(persistableTodos)
                 escapingKanbanItem(kanbanItem)

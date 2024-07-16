@@ -50,9 +50,9 @@ struct ContentView: View {
                 .presentationCornerRadius(25)
         })
         /// Handle Dragging of items throughout the whole screen
-//        .dropDestination(for: KanbanItem.self) { _, _ in
-//            return false
-//        } isTargeted: { trashCanSelected = $0 }
+        .dropDestination(for: PersistableKanbanItem.self) { _, _ in
+            return false
+        } isTargeted: { trashCanSelected = $0 }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.gray.gradient.opacity(0.3))
     }
@@ -87,11 +87,11 @@ struct ContentView: View {
                     .tint(tint)
                     .font(.largeTitle)
             }
-//            .dropDestination(for: KanbanItem.self) { items, _ in
-//                guard let item = items.first else { return false }
-//                board.removeItem(withItemId: item.id)
-//                return true
-//            } isTargeted: { trashCanSelected = $0 }
+            .dropDestination(for: PersistableKanbanItem.self) { items, _ in
+                guard let item = items.first else { return false }
+                board.removeItem(withItemId: Int(item.ranking))
+                return true
+            } isTargeted: { trashCanSelected = $0 }
             .padding(15)
             .padding(.trailing, 10)
         }
@@ -104,7 +104,7 @@ struct ContentView: View {
                 KanbanItemView(rootKanbanItem: item)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
-//                    .draggable(item)
+                    .draggable(item)
                     .onTapGesture {
                         self.currentlyViewingItem = item
                     }
@@ -148,11 +148,11 @@ struct ContentView: View {
                         selectedTab = column.id
                     }
                 }
-//                .dropDestination(for: KanbanItem.self) { items, _ in
-//                    guard let item = items.first else { return false }
-//                    board.moveItem(withItemId: item.id, toColumn: column.id)
-//                    return true
-//                } isTargeted: { trashCanSelected = $0 }
+                .dropDestination(for: PersistableKanbanItem.self) { items, _ in
+                    guard let item = items.first else { return false }
+                    board.moveItem(withItemId: Int(item.ranking), toColumn: column.id)
+                    return true
+                } isTargeted: { trashCanSelected = $0 }
             }
         }
         /// Background to show which one is selected
@@ -181,9 +181,8 @@ extension ContentView {
         item.column = Int16(columnToPlace)
         board.addItem(item)
         selectedTab = 0
-        board.globalItemIdCounter += 1
     }
-    
+
     func deleteItem(_ shouldDelete: Bool) {
         guard shouldDelete else { return }
         

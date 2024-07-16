@@ -18,7 +18,16 @@ import CoreData
 /// In theory this whole model is decodable, so we can save it in some json, to be accessed
 class KanbanBoard: ObservableObject {
     let dataController: DataController
-    var globalItemIdCounter: Int = 0
+    var globalItemIdCounter: Int {
+        get {
+            /// Hello future me who is going to be pissed that I let a potential integer overflow happen
+            ///
+            /// This is past you saying that I don't care have a good day
+            let returnValue = UserDefaults.standard.integer(forKey: "currentItemIdCounter")
+            UserDefaults.standard.setValue(returnValue + 1, forKey: "currentItemIdCounter")
+            return returnValue
+        }
+    }
     @Published var columns: [KanbanColumn] = []
     @Published var currentlySelectedColumn: KanbanColumn
     @Published var currentlySelectedItems: [PersistableKanbanItem]
@@ -38,7 +47,7 @@ class KanbanBoard: ObservableObject {
     }
     
     func addItem(_ item: PersistableKanbanItem) {
-        saveItemToCoreData(item)
+        DataController.shared.save()
         columns[Int(item.column)].addItem(item)
         
         updateItemsIfNeeded(forColumn: Int(item.column))
@@ -99,6 +108,8 @@ class KanbanBoard: ObservableObject {
     }
     
     func updateItemsIfNeeded(forColumn: Int) {
+        DataController.shared.save()
+
         guard forColumn == currentlySelectedColumnId else { return }
         do {
             currentlySelectedItems = try items()
@@ -116,12 +127,6 @@ class KanbanBoard: ObservableObject {
             }
         }
         return fromColumnId
-    }
-    
-    private func saveItemToCoreData(_ item: PersistableKanbanItem) {
-        Task {
-            dataController.save()
-        }
     }
     
     private func removeItemFromCoreData(_ item: PersistableKanbanItem) {
