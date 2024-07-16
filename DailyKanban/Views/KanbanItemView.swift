@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct KanbanItemView: View {
-    @State var rootKanbanItem: KanbanItem
-    
+    @State var rootKanbanItem: PersistableKanbanItem
+    @State var color: Color
+
+    public init(rootKanbanItem: PersistableKanbanItem) {
+        self.rootKanbanItem = rootKanbanItem
+        self.color = rootKanbanItem.wrappedColor()
+    }
+
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
-            .fill(rootKanbanItem.color.gradient)
+            .fill(color.gradient)
             .frame(height: 50)
             .overlay(
                 UnderlyingKanbanItemView(title: $rootKanbanItem.title, isEditable: false)
@@ -54,6 +60,6 @@ struct UnderlyingKanbanItemView: View {
     }
 }
 
-#Preview {
-    KanbanItemView(rootKanbanItem: StaticProperties.random(withId: 0))
-}
+//#Preview {
+//    KanbanItemView(rootKanbanItem: StaticProperties.random(withId: 0))
+//}

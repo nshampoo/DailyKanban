@@ -13,23 +13,32 @@ class KanbanColumn: ObservableObject {
     var isVisible: Bool = true
     
     var name: String
-    @Published var items: [Int:KanbanItem] = [:]
+    @Published var items: [PersistableKanbanItem] = []
 
-    public init(id: Int, isVisible: Bool, name: String, items: [Int : KanbanItem]) {
+    public init(id: Int, isVisible: Bool, name: String, items: [PersistableKanbanItem]) {
         self.id = id
         self.isVisible = isVisible
         self.name = name
         self.items = items
     }
     
-    func addItem(_ item: KanbanItem) {
-        items[item.id] = item
+    func addItem(_ item: PersistableKanbanItem) {
+        items.append(item)
+        items = items.sorted()
     }
     
     @discardableResult
-    func removeItem(withId id: Int) throws -> KanbanItem {
-        guard let item = items.removeValue(forKey: id) else { throw KanbanErrors.invalidParameters }
-        
+    func removeItem(withId id: Int) throws -> PersistableKanbanItem {
+        var returnableItem: PersistableKanbanItem?
+        items.removeAll(where: {
+            if $0.ranking == Int16(id) {
+                returnableItem = $0
+                return true
+            }
+            return false
+        })
+        guard let item = returnableItem else { throw KanbanErrors.invalidParameters }
+
         return item
     }
 }

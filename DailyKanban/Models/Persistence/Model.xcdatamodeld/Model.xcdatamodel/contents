@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="PersistableKanbanItem" representedClassName="PersistableKanbanItem" syncable="YES">
+        <attribute name="color" attributeType="String"/>
+        <attribute name="column" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ranking" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="todoDescription" optional="YES" attributeType="String"/>
+        <relationship name="todoItem" toMany="YES" maxCount="10" deletionRule="Nullify" destinationEntity="PersistableTodoItem"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="title"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PersistableTodoItem" representedClassName="PersistableTodoItem" syncable="YES">
+        <attribute name="desc" attributeType="String"/>
+        <attribute name="isComplete" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="order" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

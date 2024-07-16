@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct DailyKanbanApp: App {
+    @StateObject private var dataController = DataController.shared
+
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(KanbanBoard(columns: StaticProperties.sampleKanbanStart))
+            ContentView()
+                .environmentObject(KanbanBoard(dataController: dataController))
+                .environment(\.managedObjectContext, dataController.persistentContainer.viewContext)
         }
     }
 }
