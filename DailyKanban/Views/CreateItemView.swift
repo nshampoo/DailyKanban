@@ -20,20 +20,18 @@ struct CreateItemNavigationView: View {
     
     /// Stepper
     @State var numTodos: Int = 0
-    private let maxTodos: Int
-    @State var todos: [String]
+    private var maxTodos: Int = 0
+    @State var todos: [String] = []
     
     /// When we dismiss this view, if we have a kanban Item we want to share back, we utilzie escapingKanbanItem to do so
     /// In theory any "user" could make this a different function if they wanted too. However in practice this just saves to the board
     var escapingKanbanItem: (_ item: KanbanItem) -> Void
     
     public init(numTodos: Int = 0, maxTodos: Int = 10, escapingKanbanItem: @escaping (_ item: KanbanItem) -> Void) {
-        
+        self.escapingKanbanItem = escapingKanbanItem
         self.numTodos = numTodos
         self.maxTodos = maxTodos
-        todos = [String](repeating:"", count: maxTodos)
-        
-        self.escapingKanbanItem = escapingKanbanItem
+        self.todos = [String](repeating:"", count: maxTodos)
     }
     
     var body: some View {
